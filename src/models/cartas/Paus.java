@@ -1,16 +1,17 @@
-package models;
+package models.cartas;
 
 import javax.management.InvalidAttributeValueException;
 import models.abstracts.Carta;
 
-public class Copas extends Carta {
-
-  public Copas(int valor) throws InvalidAttributeValueException {
+public class Paus extends Carta {
+  
+  public Paus(int valor) throws InvalidAttributeValueException {
     super(valor);
   }
 
   @Override
   public String getNomeNaipe() {
-    return "copas";
+    return "paus";
   }
+
 }

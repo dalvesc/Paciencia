@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 import commands.MoverCarta;
-import commands.Sair;
 import controller.Monitor;
 import controller.Tabuleiro;
 
@@ -29,6 +28,7 @@ public class App {
                     }
                     break;
                 case "2":
+                    Tabuleiro.getInstance().virarDoEstoque(1);
                     break;
                 case "3":
                     System.out.println("Digite a fileira que deseja revelar.");
@@ -36,7 +36,7 @@ public class App {
                     Tabuleiro.getInstance().revelarTopo(Integer.parseInt(fileira) - 1);
                     break;
                 case "4":;
-                    Tabuleiro.getInstance().exibir();
+                    Tabuleiro.getInstance().esvaziarDescarte();
                     break;
                 case "6":
                     Tabuleiro.resetInstance();

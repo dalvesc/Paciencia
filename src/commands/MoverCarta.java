@@ -21,11 +21,7 @@ public class MoverCarta implements Command{
 
   @Override
   public void execute() {
-    try {
-      this.tabuleiro.moverCarta(de, para);
-    } catch (InvalidAttributeValueException e) {
-      System.out.println("Jogada inválida");
-    }
+    this.tabuleiro.moverCarta(de, para);
   }
 
   private boolean jogadaValida(int posicao1, int posicao2) {

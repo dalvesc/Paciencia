@@ -9,19 +9,21 @@ import java.util.Vector;
 
 import javax.management.InvalidAttributeValueException;
 
-import models.BaralhoPaciencia;
-import models.Copas;
-import models.Espadas;
-import models.Fileira;
-import models.Ouro;
-import models.Paus;
+import interfaces.Empilhavel;
 import models.abstracts.Carta;
+import models.baralhos.BaralhoPaciencia;
+import models.estruturas.Descarte;
+import models.estruturas.Estoque;
+import models.estruturas.Fileira;
+import models.estruturas.Fundacao;
 
 public class Tabuleiro {
   private static Tabuleiro tabuleiro = null;
   private List<Fileira> tableaus = new ArrayList<Fileira>(7);
-  private Stack<Carta> estoque = new Stack<Carta>();
-  private Stack<Carta> descarte = new Stack<Carta>();
+  private List<Fundacao> fundacoes = new ArrayList<Fundacao>(4);
+  private List<Empilhavel> empilhaveis = new ArrayList<Empilhavel>();
+  private Estoque estoque;
+  private Descarte descarte = new Descarte();
 
   private Tabuleiro () throws InvalidAttributeValueException {
     Stack<Carta> baralho = new Stack<Carta>();
@@ -36,10 +38,11 @@ public class Tabuleiro {
       }
       this.tableaus.add(new Fileira(tableau));
     }
-    Iterator<Carta> itEstoque = baralho.iterator();
-    while(itEstoque.hasNext()) {
-      this.estoque.push(itEstoque.next());
-    }
+    this.estoque = new Estoque(baralho);
+    this.fundacoes.add(new Fundacao());
+    this.fundacoes.add(new Fundacao());
+    this.fundacoes.add(new Fundacao());
+    this.fundacoes.add(new Fundacao());
   }
 
   public static Tabuleiro getInstance() {
@@ -62,14 +65,14 @@ public class Tabuleiro {
   }
 
   public void virarDoEstoque(int quantidade) {
-    if (this.estoque.isEmpty()) {
+    if (this.estoque.getCartas().isEmpty()) {
       System.out.println("Estoque vazio");
       return;
     }
-    this.descarte.push(this.estoque.pop());
+    this.descarte.empilhar(this.estoque.desempilhar(quantidade));
   }
 
-  public void moverCarta(int de, int para) throws InvalidAttributeValueException {
+  public void moverCarta(int de, int para) {
     int quantidade = 0;
     Vector<Carta> aMover = tableaus.get(de).getCartas();
 
@@ -83,13 +86,17 @@ public class Tabuleiro {
     this.tableaus.get(para).empilhar(this.tableaus.get(de).desempilhar(quantidade));
   }
 
+  public void esvaziarDescarte() {
+    this.estoque.empilhar(this.descarte.esvaziar());
+  }
+
   public void revelarTopo(int fileira) {
     this.tableaus.get(fileira).virarCartaTopo();
   }
 
   public void exibir() {
-    this.listarCartas("Estoque", this.estoque);
-    this.listarCartas("Descarte", this.descarte);
+    this.listarCartas("Estoque", this.estoque.getCartas());
+    this.listarCartas("Descarte", this.descarte.getCartas());
     Iterator<Fileira> it = this.tableaus.iterator();
     int numFileira = 1, numFundacao = 1;
     while(it.hasNext()) {
@@ -116,13 +123,5 @@ public class Tabuleiro {
       sb.append("Vazio");
     }
     System.out.println(sb.toString().toUpperCase());
-  }
-
-  private boolean podeMover(Carta origem, Carta destino) {
-    boolean aceitaValor = destino.getValor().peso - 1 == origem.getValor().peso;
-    System.out.println(destino.getValor().peso - 1);
-    boolean origemEhVermelha = origem instanceof Copas || origem instanceof Ouro;
-    boolean destinoEhVermelho = origem instanceof Espadas || origem instanceof Paus;
-    return aceitaValor && (origemEhVermelha != destinoEhVermelho);
   }
 }

@@ -1,4 +1,4 @@
-package models;
+package models.baralhos;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,10 @@ import javax.management.InvalidAttributeValueException;
 
 import interfaces.Baralho;
 import models.abstracts.Carta;
+import models.cartas.Copas;
+import models.cartas.Espadas;
+import models.cartas.Ouro;
+import models.cartas.Paus;
 
 public class BaralhoPaciencia implements Baralho {
   private final int BARALHO_MAX_SIZE = 52;
@@ -27,5 +31,4 @@ public class BaralhoPaciencia implements Baralho {
     }
     return this.baralho;
   }
-  
 }

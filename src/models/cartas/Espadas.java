@@ -1,4 +1,4 @@
-package models;
+package models.cartas;
 
 import javax.management.InvalidAttributeValueException;
 import models.abstracts.Carta;
