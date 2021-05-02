@@ -9,8 +9,8 @@ import java.util.Vector;
 
 import javax.management.InvalidAttributeValueException;
 
-import interfaces.Empilhavel;
 import models.abstracts.Carta;
+import models.abstracts.Estrutura;
 import models.baralhos.BaralhoPaciencia;
 import models.estruturas.Descarte;
 import models.estruturas.Estoque;
@@ -21,14 +21,20 @@ public class Tabuleiro {
   private static Tabuleiro tabuleiro = null;
   private List<Fileira> tableaus = new ArrayList<Fileira>(7);
   private List<Fundacao> fundacoes = new ArrayList<Fundacao>(4);
-  private List<Empilhavel> empilhaveis = new ArrayList<Empilhavel>();
+  private Vector<Estrutura> estruturas;
   private Estoque estoque;
-  private Descarte descarte = new Descarte();
+  private Descarte descarte;
 
   private Tabuleiro () throws InvalidAttributeValueException {
     Stack<Carta> baralho = new Stack<Carta>();
     baralho.addAll(new BaralhoPaciencia().create());
     Collections.shuffle(baralho);
+
+    this.estruturas = new Vector<Estrutura>();
+    this.estruturas.add(new Fundacao());
+    this.estruturas.add(new Fundacao());
+    this.estruturas.add(new Fundacao());
+    this.estruturas.add(new Fundacao());
     for (int fileira = 0; fileira < 7; fileira++) {
       Stack<Carta> tableau = new Stack<Carta>();
       for (int linha = 0; linha < fileira + 1; linha++) {
@@ -36,8 +42,12 @@ public class Tabuleiro {
         c.setVisibilidade(linha == fileira);
         tableau.push(c);
       }
+      this.estruturas.add(new Fileira(tableau));
       this.tableaus.add(new Fileira(tableau));
     }
+    this.estruturas.add(new Descarte());
+    this.estruturas.add(new Estoque(baralho));
+    this.descarte = new Descarte();
     this.estoque = new Estoque(baralho);
     this.fundacoes.add(new Fundacao());
     this.fundacoes.add(new Fundacao());
@@ -73,17 +83,59 @@ public class Tabuleiro {
   }
 
   public void moverCarta(int de, int para) {
-    int quantidade = 0;
-    Vector<Carta> aMover = tableaus.get(de).getCartas();
+    Estrutura origem = this.estruturas.get(de);
+    Estrutura destino = this.estruturas.get(para);
 
-    for (int i = aMover.size() - 1; i >= 0; i--) {
-      Carta percorrida = aMover.get(i);
-      if (percorrida.estaVisivel() && tableaus.get(para).aceitaCarta(percorrida)) {
-        quantidade += 1;
+    if (origem instanceof Estoque) {
+      if (destino instanceof Descarte) {
+        this.estruturas.get(para).empilhar(((Estoque) this.estruturas.get(de)).desempilhar(1)); //1 ou 3
+      } 
+    } else if (origem instanceof Descarte) {
+      if (destino instanceof Estoque) {
+        this.estruturas.get(para).empilhar(((Descarte) this.estruturas.get(de)).esvaziar());
+      } else if (destino instanceof Fileira) {
+        if (((Fileira) destino).aceitaCarta(origem.verCartaTopo())){
+          this.estruturas.get(para).empilhar(((Descarte) this.estruturas.get(de)).desempilhar(1));
+        }
       }
-    }
+    } else if (origem instanceof Fileira) {
+      if (destino instanceof Fileira) {
 
-    this.tableaus.get(para).empilhar(this.tableaus.get(de).desempilhar(quantidade));
+      } else if (destino instanceof Fundacao) {
+
+      }
+    } else if (origem instanceof Fundacao) {
+
+    }
+    // int quantidadeRejeitada = 0;
+    // int quantidadeDesempilhar = 0;
+    // Vector<Carta> aMover = tableaus.get(de).getCartas();
+
+    // for (int i = 0; i < aMover.size(); i++) {
+    //   Carta percorrida = aMover.get(i);
+    //   if (percorrida.estaVisivel() && tableaus.get(para).aceitaCarta(percorrida)) {
+    //     break;
+    //   } else {
+    //     quantidadeRejeitada += 1;
+    //   }
+    // }
+
+    // quantidadeDesempilhar = aMover.size() - quantidadeRejeitada;
+    // Stack<Carta> desempilhado = this.tableaus.get(de).desempilhar(quantidadeDesempilhar);
+    // Collections.reverse(desempilhado);
+    // this.tableaus.get(para).empilhar(desempilhado);
+  }
+
+  public void moverParaFundacao(int fileira, int fundacao) {
+
+  }
+
+  public void pegarDoDescarte(int fileira) {
+    Carta carta = this.descarte.verCartaTopo();
+    Fileira tableau = this.tableaus.get(fileira);
+    if (tableau.aceitaCarta(carta)) {
+      this.tableaus.get(fileira).empilhar(this.descarte.desempilhar(1));
+    }
   }
 
   public void esvaziarDescarte() {
@@ -95,14 +147,20 @@ public class Tabuleiro {
   }
 
   public void exibir() {
-    this.listarCartas("Estoque", this.estoque.getCartas());
-    this.listarCartas("Descarte", this.descarte.getCartas());
-    Iterator<Fileira> it = this.tableaus.iterator();
-    int numFileira = 1, numFundacao = 1;
+    Iterator<Estrutura> it = this.estruturas.iterator();
+    int position = 0;
     while(it.hasNext()) {
-      Fileira fileira = it.next();
-      this.listarCartas("Fileira " + numFileira, fileira.getCartas());
-      numFileira += 1;
+      Estrutura estrutura = it.next();
+      if (estrutura instanceof Descarte) {
+        this.listarCartas("Descarte - " + position, estrutura.getCartas());
+      } else if (estrutura instanceof Estoque) {
+        this.listarCartas("Estoque - " + position, estrutura.getCartas());
+      } else if (estrutura instanceof Fileira) {
+        this.listarCartas("Fileira - " + position, estrutura.getCartas());
+      } else if (estrutura instanceof Fundacao) {
+        this.listarCartas("Fundacao - " + position, estrutura.getCartas());
+      }
+      position++;
     }
   }
 

@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import commands.MoverCarta;
+import commands.Sair;
 import controller.Monitor;
 import controller.Tabuleiro;
 
@@ -18,10 +19,10 @@ public class App {
                     System.out.print("ORIGEM, DESTINO: ");
                     String[] positions = sc.nextLine().split(",");
                     try {
-                        new MoverCarta(
-                            Integer.parseInt(positions[0].trim()) - 1, 
-                            Integer.parseInt(positions[1].trim()) - 1
-                        ).execute();
+                        Tabuleiro.getInstance().moverCarta(
+                            Integer.parseInt(positions[0].trim()),
+                            Integer.parseInt(positions[1].trim())
+                        );
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                         System.out.println("Entrada inválida!");
@@ -40,6 +41,9 @@ public class App {
                     break;
                 case "6":
                     Tabuleiro.resetInstance();
+                    break;
+                case "7":
+                    new Sair().execute();
                     break;
                 default:
                     System.out.println("Opção inválida!");
