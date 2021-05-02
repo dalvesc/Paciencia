@@ -8,12 +8,12 @@ import models.abstracts.Carta;
 import models.abstracts.Estrutura;
 import models.cartas.Copas;
 import models.cartas.Espadas;
-import models.cartas.Ouro;
+import models.cartas.Ouros;
 import models.cartas.Paus;
 import models.enums.Valor;
 
-public class Fileira extends Estrutura implements Empilhavel{
-  public Fileira (Vector<Carta> cartas) {
+public class Tableau extends Estrutura implements Empilhavel{
+  public Tableau (Vector<Carta> cartas) {
     super(cartas);
   }
 
@@ -47,7 +47,7 @@ public class Fileira extends Estrutura implements Empilhavel{
       return carta.getValor() == Valor.REI;
     }
     boolean temValorMenor = carta.getValor().peso == this.cartas.peek().getValor().peso - 1;
-    boolean cartaVermelha = carta instanceof Copas || carta instanceof Ouro;
+    boolean cartaVermelha = carta instanceof Copas || carta instanceof Ouros;
     boolean cartaPreta = carta instanceof Espadas || carta instanceof Paus;
     return temValorMenor && Boolean.logicalXor(cartaPreta, cartaVermelha);
   }

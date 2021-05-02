@@ -9,10 +9,11 @@ import javax.management.InvalidAttributeValueException;
 
 import models.abstracts.Carta;
 import models.abstracts.Estrutura;
-import models.baralhos.BaralhoPaciencia;
+import models.enums.Valor;
 import models.estruturas.Descarte;
 import models.estruturas.Estoque;
-import models.estruturas.Fileira;
+import models.estruturas.Tableau;
+import models.partidas.PartidaPaciencia;
 import models.estruturas.Fundacao;
 
 public class Tabuleiro {
@@ -21,25 +22,7 @@ public class Tabuleiro {
   private int qtdCartasEstoque = 1;
 
   private Tabuleiro () throws InvalidAttributeValueException {
-    Stack<Carta> baralho = new Stack<Carta>();
-    baralho.addAll(new BaralhoPaciencia().create());
-    Collections.shuffle(baralho);
-    this.elementosPartida = new Vector<Estrutura>();
-    this.elementosPartida.add(new Fundacao());
-    this.elementosPartida.add(new Fundacao());
-    this.elementosPartida.add(new Fundacao());
-    this.elementosPartida.add(new Fundacao());
-    for (int fileira = 0; fileira < 7; fileira++) {
-      Stack<Carta> tableau = new Stack<Carta>();
-      for (int linha = 0; linha < fileira + 1; linha++) {
-        Carta c = baralho.pop();
-        c.setVisibilidade(linha == fileira);
-        tableau.push(c);
-      }
-      this.elementosPartida.add(new Fileira(tableau));
-    }
-    this.elementosPartida.add(new Descarte());
-    this.elementosPartida.add(new Estoque(baralho));
+    this.elementosPartida = new PartidaPaciencia().create();
   }
 
   public static Tabuleiro getInstance() {
@@ -72,19 +55,19 @@ public class Tabuleiro {
     } else if (origem instanceof Descarte) {
       if (destino instanceof Estoque) {
         this.elementosPartida.get(para).empilhar(((Descarte) this.elementosPartida.get(de)).esvaziar());
-      } else if (destino instanceof Fileira) {
-        if (((Fileira) destino).aceitaCarta(origem.verCartaTopo())){
+      } else if (destino instanceof Tableau) {
+        if (((Tableau) destino).aceitaCarta(origem.verCartaTopo())){
           this.elementosPartida.get(para).empilhar(((Descarte) this.elementosPartida.get(de)).desempilhar(1));
         }
       }
-    } else if (origem instanceof Fileira) {
-      if (destino instanceof Fileira) {
+    } else if (origem instanceof Tableau) {
+      if (destino instanceof Tableau) {
         int quantidadeRejeitada = 0;
         int quantidadeDesempilhar = 0;
         Vector<Carta> aMover = origem.getCartas();
         for (int i = 0; i < aMover.size(); i++) {
           Carta percorrida = aMover.get(i);
-          if (percorrida.estaVisivel() && ((Fileira) destino).aceitaCarta(percorrida)) {
+          if (percorrida.estaVisivel() && ((Tableau) destino).aceitaCarta(percorrida)) {
             break;
           } else {
             quantidadeRejeitada += 1;
@@ -96,12 +79,12 @@ public class Tabuleiro {
         this.elementosPartida.get(para).empilhar(desempilhado);
       } else if (destino instanceof Fundacao) {
         if (((Fundacao) destino).aceitaCarta(origem.verCartaTopo())){
-          this.elementosPartida.get(para).empilhar(((Fileira) this.elementosPartida.get(de)).desempilhar(1));
+          this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar(1));
         }
       }
     } else if (origem instanceof Fundacao) {
-      if (destino instanceof Fileira) {
-        if (((Fileira) destino).aceitaCarta(origem.verCartaTopo())){
+      if (destino instanceof Tableau) {
+        if (((Tableau) destino).aceitaCarta(origem.verCartaTopo())){
           this.elementosPartida.get(para).empilhar(((Fundacao) this.elementosPartida.get(de)).desempilhar(1));
         }
       }
@@ -110,8 +93,8 @@ public class Tabuleiro {
 
   public void revelarTopo(int fileira) {
     Estrutura estrutura = this.elementosPartida.get(fileira);
-    if (estrutura instanceof Fileira) {
-      ((Fileira) this.elementosPartida.get(fileira)).virarCartaTopo();
+    if (estrutura instanceof Tableau) {
+      ((Tableau) this.elementosPartida.get(fileira)).virarCartaTopo();
     }
   }
 
@@ -128,8 +111,8 @@ public class Tabuleiro {
         this.listarCartas("Descarte - " + position, estrutura.getCartas());
       } else if (estrutura instanceof Estoque) {
         this.listarCartas("Estoque - " + position, estrutura.getCartas());
-      } else if (estrutura instanceof Fileira) {
-        this.listarCartas("Fileira - " + position, estrutura.getCartas());
+      } else if (estrutura instanceof Tableau) {
+        this.listarCartas("Tableau - " + position, estrutura.getCartas());
       } else if (estrutura instanceof Fundacao) {
         this.listarCartas("Fundacao - " + position, estrutura.getCartas());
       }
@@ -154,5 +137,20 @@ public class Tabuleiro {
       sb.append("Vazio");
     }
     System.out.println(sb.toString().toUpperCase());
+  }
+
+  public boolean checarVitoria() {
+    Iterator<Estrutura> it = this.elementosPartida.iterator();
+    int fundacoesCompletas = 0;
+    while (it.hasNext()) {
+      Estrutura estrutura = it.next();
+      if (estrutura instanceof Fundacao) {
+        Stack<Carta> cartas = ((Fundacao) estrutura).getCartas();
+        if (cartas.firstElement().getValor() == Valor.AS && cartas.lastElement().getValor() == Valor.REI) {
+          fundacoesCompletas += 1;
+        }
+      }
+    }
+    return fundacoesCompletas == 4;
   }
 }

@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-import controller.Monitor;
 import controller.Tabuleiro;
 
 public class App {
@@ -8,7 +7,7 @@ public class App {
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println('\n');
-            Monitor.mostrarMenuPrincipal();
+            mostrarMenuPrincipal();
             String input = sc.nextLine();
             switch (input) {
                 case "1":
@@ -21,6 +20,9 @@ public class App {
                             Integer.parseInt(positions[0].trim()),
                             Integer.parseInt(positions[1].trim())
                         );
+                        if (Tabuleiro.getInstance().checarVitoria()) {
+                            System.out.println("Parabéns!! Você venceu!");
+                        }
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                         System.out.println("Entrada inválida!");
@@ -54,5 +56,17 @@ public class App {
             }
             Tabuleiro.getInstance().exibir();
         }
+    }
+
+    private static void mostrarMenuPrincipal() {
+        System.out.println(
+          "1 - Mover Carta \n" +
+          "2 - Revelar carta do topo da fileira \n" +
+          "3 - Exibir Jogo \n" +
+          "4 - Alterar quantidade de cartas a serem viradas do estoque \n" +
+          "5 - Reiniciar \n" +
+          "6 - Encerrar Partida \n"
+        );
+        System.out.print("Escolha uma opção: ");
     }
 }
