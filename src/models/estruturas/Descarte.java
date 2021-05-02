@@ -7,6 +7,7 @@ import models.abstracts.Carta;
 import models.abstracts.Estrutura;
 
 public class Descarte extends Estrutura{
+  
   public Descarte () {
     super(new Stack<Carta>());
   }

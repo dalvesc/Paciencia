@@ -57,7 +57,7 @@ public class Tabuleiro {
         this.elementosPartida.get(para).empilhar(((Descarte) this.elementosPartida.get(de)).esvaziar());
       } else if (destino instanceof Tableau) {
         if (((Tableau) destino).aceitaCarta(origem.verCartaTopo())){
-          this.elementosPartida.get(para).empilhar(((Descarte) this.elementosPartida.get(de)).desempilhar(1));
+          this.elementosPartida.get(para).empilhar(((Descarte) this.elementosPartida.get(de)).desempilhar());
         }
       }
     } else if (origem instanceof Tableau) {
@@ -79,13 +79,13 @@ public class Tabuleiro {
         this.elementosPartida.get(para).empilhar(desempilhado);
       } else if (destino instanceof Fundacao) {
         if (((Fundacao) destino).aceitaCarta(origem.verCartaTopo())){
-          this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar(1));
+          this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());
         }
       }
     } else if (origem instanceof Fundacao) {
       if (destino instanceof Tableau) {
         if (((Tableau) destino).aceitaCarta(origem.verCartaTopo())){
-          this.elementosPartida.get(para).empilhar(((Fundacao) this.elementosPartida.get(de)).desempilhar(1));
+          this.elementosPartida.get(para).empilhar(((Fundacao) this.elementosPartida.get(de)).desempilhar());
         }
       }
     }

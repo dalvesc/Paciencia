@@ -9,7 +9,6 @@ import models.abstracts.Estrutura;
 import models.enums.Valor;
 
 public class Fundacao extends Estrutura implements Empilhavel {
-
   public Fundacao() {
     super(new Vector<Carta>());
   }
@@ -24,7 +23,11 @@ public class Fundacao extends Estrutura implements Empilhavel {
   @Override
   public Stack<Carta> desempilhar(int quantidade) {
     Stack<Carta> desempilhado = new Stack<Carta>();
-    desempilhado.push(this.desempilhar());
+    while(desempilhado.size() < quantidade && !this.cartas.isEmpty()) {
+      Carta carta = this.cartas.pop();
+      carta.setVisibilidade(true);
+      desempilhado.push(carta);
+    }
     return desempilhado;
   }
 

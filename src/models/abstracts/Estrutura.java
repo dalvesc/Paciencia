@@ -12,12 +12,12 @@ public abstract class Estrutura {
 
   public abstract void empilhar(Vector<Carta> cartas);
   public abstract Stack<Carta> desempilhar(int quantidade);
-
-  public Carta desempilhar() {
+  
+  public Stack<Carta> desempilhar() {
     if (this.cartas.isEmpty()) {
-      return null;
+      return new Stack<Carta>();
     }
-    return this.cartas.pop();
+    return this.desempilhar(1);
   }
 
   public Carta verCartaTopo() {
