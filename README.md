@@ -1,10 +1,10 @@
-## **Paciência**
+# **Paciência**
 
 Este projeto apresenta a modelagem do Paciência, que é um jogo de cartas muito popular.
 
-### **O projeto**
+## **O projeto**
 
-A unidade básica do jogo é a `Carta`, um baralho é composto por cartas. No caso do Paciência, as cartas podem ser dos naipes: `Copas, Ouros, Paus e Espadas`. O tabuleiro do jogo é formado por quatro estruturas: `Fundação, Tableau, Descarte e Estoque`. Cada estrutura é constituída por `Cartas` ou também podem estar vazias. 
+A unidade básica do jogo é a `Carta`, um baralho é composto por cartas. No caso do Paciência, as cartas pertencer aos naipes: `Copas, Ouros, Paus e Espadas`. O tabuleiro do jogo é formado por quatro estruturas: `Fundação, Tableau, Descarte e Estoque`. Cada `Estrutura` é constituída por `Cartas` ou também podem estar vazias. 
 
 Uma jogada acontece ao movimentar uma carta de uma `Estrutura` para outra. As estruturas de `Fundação` e `Tableau` têm regras especiais para o empilhamento de cartas, portanto é preciso verificar a pilha aceita a carta a ser movida, para isso implementam a interface `Empilhavel`. A classe `Estrutura` também define métodos para o controle de sua pilha de cartas interna.
 
@@ -24,9 +24,10 @@ O diagrama a seguir ilustra o modelo do projeto em alto nível.
   - **Descarte**: Representa a pilha de cartas reveladas do `Estoque`.
   - **Estoque**: Representa o conjunto de `Cartas` que ainda não foram utilizadas nas outras estruturas.
 
-- **Tabuleiro**: É composto por `Estruturas` e é onde o controle do jogo acontece.
+- **Tabuleiro**: É composto por `Estruturas` e é onde ações de controle do jogo (*e.g. movimentação das cartas, reiniciar partida, verificar se o jogador venceu*) são executadas.
 - **App**: Inicializa o programa e direciona as ações do usuário.
-### **Como jogar?**
+
+## **Como jogar?**
 
 Para iniciar o jogo é preciso executar o código `App.java` presente no projeto.
 
@@ -48,7 +49,7 @@ O jogo possui as seguintes opções:
 
 - `6 - Encerrar Partida:` Ao escolher essa opção pressionando `6` seguido de `Enter`, o jogo é encerrado.
 
-### **Padrões de projetos e avaliação do sistema**
+## **Padrões de projetos e avaliação do sistema**
 O sistema divide as responsabilidades de cada entidade baseado no seu papel no sistema. O uso do padrão *Singleton* garante que haja apenas uma instância do `Tabuleiro` durante a execução do programa, o que permite que partes diferentes do sistema interajam com a partida em andamento sem inconsistência de informações. 
 
 A criação das estruturas que compõem um `Tabuleiro` foram abstraídas em uma *Factory* responsável por inicializar os elementos necessários para uma partida. Isso permite a criação de diferentes tipos de jogos no futuro e com poucas adaptações o `Tabuleiro` estará pronto para suportar diferentes jogos.
