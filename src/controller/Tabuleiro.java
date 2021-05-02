@@ -1,9 +1,7 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Stack;
 import java.util.Vector;
 
@@ -19,22 +17,18 @@ import models.estruturas.Fundacao;
 
 public class Tabuleiro {
   private static Tabuleiro tabuleiro = null;
-  private List<Fileira> tableaus = new ArrayList<Fileira>(7);
-  private List<Fundacao> fundacoes = new ArrayList<Fundacao>(4);
-  private Vector<Estrutura> estruturas;
-  private Estoque estoque;
-  private Descarte descarte;
+  private Vector<Estrutura> elementosPartida;
+  private int qtdCartasEstoque = 1;
 
   private Tabuleiro () throws InvalidAttributeValueException {
     Stack<Carta> baralho = new Stack<Carta>();
     baralho.addAll(new BaralhoPaciencia().create());
     Collections.shuffle(baralho);
-
-    this.estruturas = new Vector<Estrutura>();
-    this.estruturas.add(new Fundacao());
-    this.estruturas.add(new Fundacao());
-    this.estruturas.add(new Fundacao());
-    this.estruturas.add(new Fundacao());
+    this.elementosPartida = new Vector<Estrutura>();
+    this.elementosPartida.add(new Fundacao());
+    this.elementosPartida.add(new Fundacao());
+    this.elementosPartida.add(new Fundacao());
+    this.elementosPartida.add(new Fundacao());
     for (int fileira = 0; fileira < 7; fileira++) {
       Stack<Carta> tableau = new Stack<Carta>();
       for (int linha = 0; linha < fileira + 1; linha++) {
@@ -42,17 +36,10 @@ public class Tabuleiro {
         c.setVisibilidade(linha == fileira);
         tableau.push(c);
       }
-      this.estruturas.add(new Fileira(tableau));
-      this.tableaus.add(new Fileira(tableau));
+      this.elementosPartida.add(new Fileira(tableau));
     }
-    this.estruturas.add(new Descarte());
-    this.estruturas.add(new Estoque(baralho));
-    this.descarte = new Descarte();
-    this.estoque = new Estoque(baralho);
-    this.fundacoes.add(new Fundacao());
-    this.fundacoes.add(new Fundacao());
-    this.fundacoes.add(new Fundacao());
-    this.fundacoes.add(new Fundacao());
+    this.elementosPartida.add(new Descarte());
+    this.elementosPartida.add(new Estoque(baralho));
   }
 
   public static Tabuleiro getInstance() {
@@ -74,80 +61,66 @@ public class Tabuleiro {
     }
   }
 
-  public void virarDoEstoque(int quantidade) {
-    if (this.estoque.getCartas().isEmpty()) {
-      System.out.println("Estoque vazio");
-      return;
-    }
-    this.descarte.empilhar(this.estoque.desempilhar(quantidade));
-  }
-
   public void moverCarta(int de, int para) {
-    Estrutura origem = this.estruturas.get(de);
-    Estrutura destino = this.estruturas.get(para);
+    Estrutura origem = this.elementosPartida.get(de);
+    Estrutura destino = this.elementosPartida.get(para);
 
     if (origem instanceof Estoque) {
       if (destino instanceof Descarte) {
-        this.estruturas.get(para).empilhar(((Estoque) this.estruturas.get(de)).desempilhar(1)); //1 ou 3
+        this.elementosPartida.get(para).empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar(qtdCartasEstoque));
       } 
     } else if (origem instanceof Descarte) {
       if (destino instanceof Estoque) {
-        this.estruturas.get(para).empilhar(((Descarte) this.estruturas.get(de)).esvaziar());
+        this.elementosPartida.get(para).empilhar(((Descarte) this.elementosPartida.get(de)).esvaziar());
       } else if (destino instanceof Fileira) {
         if (((Fileira) destino).aceitaCarta(origem.verCartaTopo())){
-          this.estruturas.get(para).empilhar(((Descarte) this.estruturas.get(de)).desempilhar(1));
+          this.elementosPartida.get(para).empilhar(((Descarte) this.elementosPartida.get(de)).desempilhar(1));
         }
       }
     } else if (origem instanceof Fileira) {
       if (destino instanceof Fileira) {
-
+        int quantidadeRejeitada = 0;
+        int quantidadeDesempilhar = 0;
+        Vector<Carta> aMover = origem.getCartas();
+        for (int i = 0; i < aMover.size(); i++) {
+          Carta percorrida = aMover.get(i);
+          if (percorrida.estaVisivel() && ((Fileira) destino).aceitaCarta(percorrida)) {
+            break;
+          } else {
+            quantidadeRejeitada += 1;
+          }
+        }
+        quantidadeDesempilhar = aMover.size() - quantidadeRejeitada;
+        Stack<Carta> desempilhado = this.elementosPartida.get(de).desempilhar(quantidadeDesempilhar);
+        Collections.reverse(desempilhado);
+        this.elementosPartida.get(para).empilhar(desempilhado);
       } else if (destino instanceof Fundacao) {
-
+        if (((Fundacao) destino).aceitaCarta(origem.verCartaTopo())){
+          this.elementosPartida.get(para).empilhar(((Fileira) this.elementosPartida.get(de)).desempilhar(1));
+        }
       }
     } else if (origem instanceof Fundacao) {
-
+      if (destino instanceof Fileira) {
+        if (((Fileira) destino).aceitaCarta(origem.verCartaTopo())){
+          this.elementosPartida.get(para).empilhar(((Fundacao) this.elementosPartida.get(de)).desempilhar(1));
+        }
+      }
     }
-    // int quantidadeRejeitada = 0;
-    // int quantidadeDesempilhar = 0;
-    // Vector<Carta> aMover = tableaus.get(de).getCartas();
-
-    // for (int i = 0; i < aMover.size(); i++) {
-    //   Carta percorrida = aMover.get(i);
-    //   if (percorrida.estaVisivel() && tableaus.get(para).aceitaCarta(percorrida)) {
-    //     break;
-    //   } else {
-    //     quantidadeRejeitada += 1;
-    //   }
-    // }
-
-    // quantidadeDesempilhar = aMover.size() - quantidadeRejeitada;
-    // Stack<Carta> desempilhado = this.tableaus.get(de).desempilhar(quantidadeDesempilhar);
-    // Collections.reverse(desempilhado);
-    // this.tableaus.get(para).empilhar(desempilhado);
-  }
-
-  public void moverParaFundacao(int fileira, int fundacao) {
-
-  }
-
-  public void pegarDoDescarte(int fileira) {
-    Carta carta = this.descarte.verCartaTopo();
-    Fileira tableau = this.tableaus.get(fileira);
-    if (tableau.aceitaCarta(carta)) {
-      this.tableaus.get(fileira).empilhar(this.descarte.desempilhar(1));
-    }
-  }
-
-  public void esvaziarDescarte() {
-    this.estoque.empilhar(this.descarte.esvaziar());
   }
 
   public void revelarTopo(int fileira) {
-    this.tableaus.get(fileira).virarCartaTopo();
+    Estrutura estrutura = this.elementosPartida.get(fileira);
+    if (estrutura instanceof Fileira) {
+      ((Fileira) this.elementosPartida.get(fileira)).virarCartaTopo();
+    }
+  }
+
+  public void mudarDificuldade() {
+    this.qtdCartasEstoque = this.qtdCartasEstoque == 1 ? 3 : 1;
   }
 
   public void exibir() {
-    Iterator<Estrutura> it = this.estruturas.iterator();
+    Iterator<Estrutura> it = this.elementosPartida.iterator();
     int position = 0;
     while(it.hasNext()) {
       Estrutura estrutura = it.next();

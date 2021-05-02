@@ -6,6 +6,7 @@ import java.util.Vector;
 import interfaces.Empilhavel;
 import models.abstracts.Carta;
 import models.abstracts.Estrutura;
+import models.enums.Valor;
 
 public class Fundacao extends Estrutura implements Empilhavel {
 
@@ -29,6 +30,9 @@ public class Fundacao extends Estrutura implements Empilhavel {
 
   @Override
   public boolean aceitaCarta(Carta carta) {
+    if (this.cartas.isEmpty()) {
+      return carta.getValor() == Valor.AS;
+    }
     boolean mesmoNaipe = this.cartas.peek().getClass().equals(carta.getClass());
     boolean valorMaior = carta.getValor().peso == this.cartas.peek().getValor().peso + 1;
     return mesmoNaipe && valorMaior;

@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import commands.MoverCarta;
-import commands.Sair;
 import controller.Monitor;
 import controller.Tabuleiro;
 
@@ -29,21 +27,26 @@ public class App {
                     }
                     break;
                 case "2":
-                    Tabuleiro.getInstance().virarDoEstoque(1);
-                    break;
-                case "3":
                     System.out.println("Digite a fileira que deseja revelar.");
                     String fileira = sc.nextLine();
-                    Tabuleiro.getInstance().revelarTopo(Integer.parseInt(fileira) - 1);
+                    try {
+                        Tabuleiro.getInstance().revelarTopo(Integer.parseInt(fileira));
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Entrada inválida!");
+                    }
                     break;
-                case "4":;
-                    Tabuleiro.getInstance().esvaziarDescarte();
+                case "3":
                     break;
-                case "6":
+                case "4":
+                    Tabuleiro.getInstance().mudarDificuldade();
+                    break;
+                case "5":
                     Tabuleiro.resetInstance();
                     break;
-                case "7":
-                    new Sair().execute();
+                case "6":
+                    System.out.println("Saindo...");
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Opção inválida!");
