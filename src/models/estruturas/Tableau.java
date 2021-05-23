@@ -49,6 +49,7 @@ public class Tableau extends Estrutura implements Empilhavel{
     boolean temValorMenor = carta.getValor().peso == this.cartas.peek().getValor().peso - 1;
     boolean cartaVermelha = carta instanceof Copas || carta instanceof Ouros;
     boolean cartaPreta = carta instanceof Espadas || carta instanceof Paus;
+    //comparação cores
     return temValorMenor && Boolean.logicalXor(cartaPreta, cartaVermelha);
   }
 }
