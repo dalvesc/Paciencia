@@ -34,7 +34,15 @@ public class menuController {
 
     @FXML
     void escolhaPaciencia(ActionEvent event) {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/views/escolhaPaciencia.fxml"));
+       
+        Scene scene = new Scene(root);
 
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Paciência");
+        MenuPaciencia.iniciaPaciencia();
     }
 
 }
