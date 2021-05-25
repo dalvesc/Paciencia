@@ -11,7 +11,7 @@ public class Paus extends Carta {
 
   @Override
   public String getNomeNaipe() {
-    return "paus";
+    return "♣";
   }
 
 }

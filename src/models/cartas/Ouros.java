@@ -11,7 +11,7 @@ public class Ouros extends Carta {
 
   @Override
   public String getNomeNaipe() {
-    return "ouros";
+    return "♦";
   }
   
 }

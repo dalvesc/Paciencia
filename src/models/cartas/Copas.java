@@ -11,6 +11,6 @@ public class Copas extends Carta {
 
   @Override
   public String getNomeNaipe() {
-    return "copas";
+    return "♥";
   }
 }

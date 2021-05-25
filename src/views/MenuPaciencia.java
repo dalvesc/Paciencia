@@ -1,8 +1,11 @@
+package views;
 import java.util.Scanner;
 import controller.Tabuleiro;
 
 
 public class MenuPaciencia{
+
+    private MenuPaciencia(){}
 
     public static void iniciaPaciencia() throws Exception{
         Scanner sc = new Scanner(System.in);

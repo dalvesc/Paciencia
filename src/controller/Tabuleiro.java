@@ -125,7 +125,7 @@ public class Tabuleiro {
     for(int i = 0; i < cartas.size(); i++) {
       Carta carta = cartas.get(i);
       if (carta.estaVisivel()) {
-        sb.append(carta.getValor() + " de " + carta.getNomeNaipe());
+        sb.append(carta.getValor() + " " +carta.getNomeNaipe());
       } else {
         sb.append("[<>]");
       }

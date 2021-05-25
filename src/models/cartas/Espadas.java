@@ -11,7 +11,7 @@ public class Espadas extends Carta {
 
   @Override
   public String getNomeNaipe() {
-    return "espadas";
+    return "♠";
   }
   
 }
