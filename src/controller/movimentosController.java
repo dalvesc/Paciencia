@@ -4,7 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-
+/**
+ * Controller para funções de movimentação.
+ * 
+ * @author Adlla Katarine e Daniel Alves
+ */
 public class movimentosController {
 
     @FXML

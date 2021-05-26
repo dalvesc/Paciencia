@@ -12,6 +12,11 @@ import models.abstracts.Estrutura;
 import models.partidas.PartidaBigBertha;
 import models.estruturas.*;
 
+/**
+ * Regras big bertha.
+ * 
+ * @author Adlla Katarine e Daniel Alves
+ */
 public class TabuleiroBigBertha {
     private static TabuleiroBigBertha tabuleiroBB = null;
     private Vector<Estrutura> elementosPartida;

@@ -38,67 +38,67 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.bigBerthaController">
    <children>
       <AnchorPane prefHeight="650.0" prefWidth="1300.0">
          <children>
-            <ListView layoutX="17.0" layoutY="23.0" prefHeight="95.0" prefWidth="110.0" />
-            <ListView layoutX="436.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="522.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="608.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="694.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="780.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="866.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="952.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="1038.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="1124.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="1210.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="350.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="264.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="178.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="92.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView layoutX="6.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <Label layoutX="178.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <ListView fx:id="estoque" layoutX="17.0" layoutY="23.0" prefHeight="95.0" prefWidth="110.0" />
+            <ListView fx:id="fileira6" layoutX="436.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira7" layoutX="522.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira8" layoutX="608.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira9" layoutX="694.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira10" layoutX="780.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira11" layoutX="866.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira12" layoutX="952.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira13" layoutX="1038.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira14" layoutX="1124.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira16" layoutX="1210.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira5" layoutX="350.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira4" layoutX="264.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira3" layoutX="178.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira2" layoutX="92.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <ListView fx:id="fileira1" layoutX="6.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
+            <Label fx:id="fundacao1" layoutX="178.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="264.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao2" layoutX="264.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="350.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao3" layoutX="350.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="436.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao4" layoutX="436.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="522.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao5" layoutX="522.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="608.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao6" layoutX="608.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="694.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao7" layoutX="694.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="780.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao8" layoutX="780.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="952.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacaoK" layoutX="952.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
                <font>
                   <Font size="18.0" />
                </font>
