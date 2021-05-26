@@ -32,8 +32,11 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -43,64 +46,92 @@
       <AnchorPane prefHeight="650.0" prefWidth="1300.0">
          <children>
             <ListView fx:id="estoque" layoutX="17.0" layoutY="23.0" prefHeight="95.0" prefWidth="110.0" />
-            <ListView fx:id="fileira6" layoutX="436.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira7" layoutX="522.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira8" layoutX="608.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira9" layoutX="694.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira10" layoutX="780.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira11" layoutX="866.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira12" layoutX="952.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira13" layoutX="1038.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira14" layoutX="1124.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira15" layoutX="1210.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira5" layoutX="350.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira4" layoutX="264.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira3" layoutX="178.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira2" layoutX="92.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <ListView fx:id="fileira1" layoutX="6.0" layoutY="126.0" prefHeight="470.0" prefWidth="85.0" />
-            <Label fx:id="fundacao1" layoutX="178.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <ListView fx:id="fileira6" layoutX="436.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira7" layoutX="522.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira8" layoutX="608.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira9" layoutX="694.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira10" layoutX="780.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira11" layoutX="866.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira12" layoutX="952.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira13" layoutX="1038.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira14" layoutX="1124.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira15" layoutX="1210.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira5" layoutX="350.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira4" layoutX="264.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira3" layoutX="178.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira2" layoutX="92.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira1" layoutX="6.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <Label fx:id="fundacao1" layoutX="178.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 1">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao2" layoutX="264.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao2" layoutX="272.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 2">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao3" layoutX="350.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao3" layoutX="366.0" layoutY="54.0" prefHeight="43.0" prefWidth="103.0" text="Fundacao 3 ">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao4" layoutX="436.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao4" layoutX="469.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 4">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao5" layoutX="522.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao5" layoutX="565.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 5">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao6" layoutX="608.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao6" layoutX="659.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 6">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao7" layoutX="694.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao7" layoutX="753.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 7">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao8" layoutX="780.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacao8" layoutX="847.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 8">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacaoK" layoutX="952.0" layoutY="54.0" prefHeight="43.0" prefWidth="85.0" text="Fundacao">
+            <Label fx:id="fundacaoK" layoutX="1034.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao K">
                <font>
                   <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelTenteNovamente" layoutX="946.0" layoutY="500.0" prefHeight="48.0" prefWidth="302.0" text="TENTE NOVAMENTE!!!" textFill="RED" visible="false">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <MenuButton fx:id="deMovimento" layoutX="28.0" layoutY="508.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" text="De">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </MenuButton>
+            <MenuButton fx:id="paraMovimento" layoutX="264.0" layoutY="508.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" text="Para">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem mnemonicParsing="false" text="Action 2" />
+               </items>
+            </MenuButton>
+            <Button fx:id="botaoMover" layoutX="496.0" layoutY="523.0" mnemonicParsing="false" text="Mover" />
+            <Label layoutX="41.0" layoutY="431.0" prefHeight="30.0" prefWidth="460.0" text="Selecione a partir de qual carta deseja movimentar">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="168.0" layoutY="461.0" prefHeight="30.0" prefWidth="331.0" text="da fileira em que você quer remover">
+               <font>
+                  <Font size="20.0" />
                </font>
             </Label>
          </children>

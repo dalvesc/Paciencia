@@ -2,7 +2,6 @@ package controller;
 
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Stack;
 import javafx.scene.control.ListView;
@@ -11,8 +10,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
+import javafx.scene.control.MenuButton;
 
 
 /**
@@ -96,6 +96,19 @@ public class bigBerthaController implements Initializable {
 
     @FXML
     private Label fundacaoK;
+
+    @FXML
+    private MenuButton deMovimento;
+
+    @FXML
+    private MenuButton paraMovimento;
+
+    @FXML
+    private Button botaoMover;
+
+    @FXML
+    private Label labelTenteNovamente;
+    
 
     Stack<Stack<Carta>> fileiras = TabuleiroBigBertha.getInstance().getTableau();
 
