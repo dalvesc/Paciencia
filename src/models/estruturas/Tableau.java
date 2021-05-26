@@ -7,9 +7,7 @@ import interfaces.Empilhavel;
 import models.abstracts.Carta;
 import models.abstracts.Estrutura;
 import models.cartas.Copas;
-import models.cartas.Espadas;
 import models.cartas.Ouros;
-import models.cartas.Paus;
 import models.enums.Valor;
 
 public class Tableau extends Estrutura implements Empilhavel{
@@ -46,10 +44,28 @@ public class Tableau extends Estrutura implements Empilhavel{
     if (this.cartas.isEmpty()) {
       return carta.getValor() == Valor.REI;
     }
+    return compararCorEValor(carta);
+  }
+
+  public boolean aceitaCarta_OutraRegra(Carta carta){
+    if (this.cartas.isEmpty()) {
+      return true;
+    } return compararCorEValor(carta);
+  }
+
+  /**
+   * 
+   * 
+   * 
+   * @param carta
+   * @return boolean
+   */
+  private boolean compararCorEValor(Carta carta){
     boolean temValorMenor = carta.getValor().peso == this.cartas.peek().getValor().peso - 1;
-    boolean cartaVermelha = carta instanceof Copas || carta instanceof Ouros;
-    boolean cartaPreta = carta instanceof Espadas || carta instanceof Paus;
+
+    boolean cartaAnteriorIsVermelha = this.cartas.peek() instanceof Copas || this.cartas.peek() instanceof Ouros;
+    boolean cartaAtualIsVermelha = carta instanceof Copas || carta instanceof Ouros;
     //comparação cores
-    return temValorMenor && Boolean.logicalXor(cartaPreta, cartaVermelha);
+    return temValorMenor && Boolean.logicalXor(cartaAnteriorIsVermelha, cartaAtualIsVermelha);
   }
 }
