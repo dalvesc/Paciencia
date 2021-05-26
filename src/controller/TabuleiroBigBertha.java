@@ -141,4 +141,21 @@ public class TabuleiroBigBertha {
         }
         return true;
     }
+
+   /**
+    * Retorna as fileiras do jogo da 15 para 1.
+    * 
+    * @return uma pilha de pilhas contendo as filheiras
+    */
+  public Stack<Stack<Carta>> getTableau(){
+    Iterator<Estrutura> it = this.elementosPartida.iterator();
+    Stack<Stack<Carta>> tableau = new Stack<Stack<Carta>>();
+    while(it.hasNext()) {
+      Estrutura estrutura = it.next();
+      if (estrutura instanceof Tableau) {
+        tableau.push(estrutura.getCartas());
+      }
+    }
+    return tableau;
+  }
 }

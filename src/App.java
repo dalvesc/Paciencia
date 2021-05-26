@@ -20,6 +20,4 @@ public class App extends Application {
         primaryStage.setScene(menu);
         primaryStage.show();
     }
-
-    
 }
