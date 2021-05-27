@@ -110,7 +110,10 @@ public class bigBerthaController implements Initializable {
     private Label labelTenteNovamente;
     
 
+    Stack<Stack<Carta>> estoqueL = TabuleiroBigBertha.getInstance().getEstoque();
     Stack<Stack<Carta>> fileiras = TabuleiroBigBertha.getInstance().getTableau();
+    Stack<Stack<Carta>> fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();
+    Stack<Stack<Carta>> fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {

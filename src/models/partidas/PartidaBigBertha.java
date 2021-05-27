@@ -40,6 +40,7 @@ public class PartidaBigBertha implements Partida {
       }
       estruturas.add(new Tableau(tableau));
     }
+    revelarUltimasCartasEstoque(baralho);
     estruturas.add(new Estoque(baralho));
     return estruturas;
   }
@@ -60,5 +61,18 @@ public class PartidaBigBertha implements Partida {
             baralho.add(new Ouros(i));
           }
     } return baralho;
+  }
+
+  /**
+   * 
+   * Método que revela as 3 últimas cartas do estoque.
+   * 
+   * @param estoque pilha de cartas do estoque.
+   */
+  private void revelarUltimasCartasEstoque(Stack<Carta> estoque){
+    int qndtCartasReveladas = 3;
+    for (int i = estoque.size(); i > estoque.size() - qndtCartasReveladas; i--) {
+      estoque.get(i-1).setVisibilidade(true);
+    }
   }
 }

@@ -47,9 +47,10 @@ public class TabuleiroBigBertha {
 
     /**
      * 
-     * Método que move a(s) carta(s) de uma estrutura para outra de acordo com as regras do Big Bertha.
+     * Método que move a(s) carta(s) de uma estrutura para outra de acordo com as
+     * regras do Big Bertha.
      * 
-     * @param de estrtura de origem.
+     * @param de   estrtura de origem.
      * @param para estrutura de destino.
      */
     public void moverCarta(int de, int para) {
@@ -58,7 +59,8 @@ public class TabuleiroBigBertha {
 
         if (origem instanceof Estoque) {
             if (destino instanceof Descarte) {
-                this.elementosPartida.get(para).empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar(qtdCartasEstoque));
+                this.elementosPartida.get(para)
+                        .empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar(qtdCartasEstoque));
             } else if (destino instanceof Tableau) {
                 if (((Tableau) destino).aceitaCarta(origem.verCartaTopo())) {
                     this.elementosPartida.get(para).empilhar(((Descarte) this.elementosPartida.get(de)).desempilhar());
@@ -133,7 +135,7 @@ public class TabuleiroBigBertha {
                 if (estrutura.getCartas().size() < 12) {
                     return false;
                 }
-            } else if(estrutura instanceof FundacaoEspecial){
+            } else if (estrutura instanceof FundacaoEspecial) {
                 if (estrutura.getCartas().size() < 8) {
                     return false;
                 }
@@ -142,20 +144,57 @@ public class TabuleiroBigBertha {
         return true;
     }
 
-   /**
-    * Retorna as fileiras do jogo da 15 para 1.
-    * 
-    * @return uma pilha de pilhas contendo as filheiras
-    */
-  public Stack<Stack<Carta>> getTableau(){
-    Iterator<Estrutura> it = this.elementosPartida.iterator();
-    Stack<Stack<Carta>> tableau = new Stack<Stack<Carta>>();
-    while(it.hasNext()) {
-      Estrutura estrutura = it.next();
-      if (estrutura instanceof Tableau) {
-        tableau.push(estrutura.getCartas());
-      }
+    public Stack<Stack<Carta>> getTableau() {
+        Iterator<Estrutura> it = this.elementosPartida.iterator();
+        Stack<Stack<Carta>> tableau = new Stack<Stack<Carta>>();
+        while (it.hasNext()) {
+            Estrutura estrutura = it.next();
+            if (estrutura instanceof Tableau) {
+                tableau.push(estrutura.getCartas());
+            }
+        }
+        return tableau;
     }
-    return tableau;
-  }
+
+    /**
+     * Retorna as fileiras do jogo da 15 para 1.
+     * 
+     * @return uma pilha de pilhas contendo as filheiras
+     */
+    public Stack<Stack<Carta>> getEstoque() {
+        Iterator<Estrutura> it = this.elementosPartida.iterator();
+        Stack<Stack<Carta>> estoque = new Stack<Stack<Carta>>();
+        while (it.hasNext()) {
+            Estrutura estrutura = it.next();
+            if (estrutura instanceof Estoque) {
+                estoque.push(estrutura.getCartas());
+                return estoque;
+            }
+        } return null;
+    }
+
+    public Stack<Stack<Carta>> getFundacoes() {
+        Iterator<Estrutura> it = this.elementosPartida.iterator();
+        Stack<Stack<Carta>> fundacoes = new Stack<Stack<Carta>>();
+        while (it.hasNext()) {
+            Estrutura estrutura = it.next();
+            if (estrutura instanceof Fundacao) {
+                fundacoes.push(estrutura.getCartas());
+            }
+        }
+        return fundacoes;
+    }
+
+    public Stack<Stack<Carta>> getFundacaoEspecial() {
+        Iterator<Estrutura> it = this.elementosPartida.iterator();
+        Stack<Stack<Carta>> fundacaoEspecial = new Stack<Stack<Carta>>();
+        while (it.hasNext()) {
+            Estrutura estrutura = it.next();
+            if (estrutura instanceof FundacaoEspecial) {
+                fundacaoEspecial.push(estrutura.getCartas());
+                return fundacaoEspecial;
+            }
+        }
+        return null;
+    }
 }
