@@ -101,7 +101,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacaoK" layoutX="1034.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao K">
+            <Label fx:id="fundacaoK" layoutX="1034.0" layoutY="54.0" prefHeight="43.0" prefWidth="110.0" text="Fundacao REI">
                <font>
                   <Font size="18.0" />
                </font>
@@ -112,10 +112,53 @@
                </font>
             </Label>
             <MenuButton fx:id="deMovimento" layoutX="28.0" layoutY="508.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" text="De">
-            </MenuButton>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#estoqueID" text="ESTOQUE" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID1" text="FILEIRA 1" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID2" text="FILEIRA 2" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID3" text="FILEIRA 3" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID4" text="FILEIRA 4" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID5" text="FILEIRA 5" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID6" text="FILEIRA 6" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID7" text="FILEIRA 7" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID8" text="FILEIRA 8" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID9" text="FILEIRA 9" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID10" text="FILEIRA 10" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID11" text="FILEIRA 11" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID12" text="FILEIRA 12" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID13" text="FILEIRA 13" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID14" text="FILEIRA 14" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraID15" text="FILEIRA 15" />
+               </items></MenuButton>
             <MenuButton fx:id="paraMovimento" layoutX="264.0" layoutY="508.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" text="Para">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP1" text="FILEIRA 1" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP2" text="FILEIRA 2" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP3" text="FILEIRA 3" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP4" text="FILEIRA 4" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP5" text="FILEIRA 5" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP6" text="FILEIRA 6" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP7" text="FILEIRA 7" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP8" text="FILEIRA 8" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP9" text="FILEIRA 9" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP10" text="FILEIRA 10" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP11" text="FILEIRA 11" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP12" text="FILEIRA 12" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP13" text="FILEIRA 13" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP14" text="FILEIRA 14" />
+                  <MenuItem mnemonicParsing="false" onAction="#fileiraIP15" text="FILEIRA 15" />
+                  <MenuItem mnemonicParsing="false" onAction="#fudacaoIP1" text="FUNDAÇÃO 1" />
+                  <MenuItem mnemonicParsing="false" onAction="#fudacaoIP2" text="FUNDAÇÃO 2" />
+                  <MenuItem mnemonicParsing="false" onAction="#fudacaoIP3" text="FUNDAÇÃO 3" />
+                  <MenuItem mnemonicParsing="false" onAction="#fudacaoIP4" text="FUNDAÇÃO 4" />
+                  <MenuItem mnemonicParsing="false" onAction="#fudacaoIP5" text="FUNDAÇÃO 5" />
+                  <MenuItem mnemonicParsing="false" onAction="#fudacaoIP6" text="FUNDAÇÃO 6" />
+                  <MenuItem mnemonicParsing="false" onAction="#fudacaoIP7" text="FUNDAÇÃO 7" />
+                  <MenuItem mnemonicParsing="false" onAction="#fudacaoIP8" text="FUNDAÇÃO 8" />
+                  <MenuItem mnemonicParsing="false" onAction="#fudacaoIPK" text="FUNDAÇÃO K" />
+               </items>
             </MenuButton>
-            <Button fx:id="botaoMover" layoutX="496.0" layoutY="523.0" mnemonicParsing="false" text="Mover" />
+            <Button fx:id="botaoMover" layoutX="496.0" layoutY="523.0" mnemonicParsing="false" onAction="#botaoMover" text="Mover" />
             <Label layoutX="41.0" layoutY="431.0" prefHeight="30.0" prefWidth="460.0" text="Selecione a partir de qual carta deseja movimentar">
                <font>
                   <Font size="20.0" />

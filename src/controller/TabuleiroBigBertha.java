@@ -24,6 +24,8 @@ public class TabuleiroBigBertha {
 
     private TabuleiroBigBertha() throws InvalidAttributeValueException {
         this.elementosPartida = new PartidaBigBertha().create();
+        System.out.println(elementosPartida.size());
+
     }
 
     public static TabuleiroBigBertha getInstance() {
@@ -143,7 +145,11 @@ public class TabuleiroBigBertha {
         }
         return true;
     }
-
+    /**
+     * Retorna as fileiras do jogo da 15 para 1.
+     * 
+     * @return uma pilha de pilhas contendo as filheiras
+     */
     public Stack<Stack<Carta>> getTableau() {
         Iterator<Estrutura> it = this.elementosPartida.iterator();
         Stack<Stack<Carta>> tableau = new Stack<Stack<Carta>>();
@@ -156,11 +162,7 @@ public class TabuleiroBigBertha {
         return tableau;
     }
 
-    /**
-     * Retorna as fileiras do jogo da 15 para 1.
-     * 
-     * @return uma pilha de pilhas contendo as filheiras
-     */
+    
     public Stack<Stack<Carta>> getEstoque() {
         Iterator<Estrutura> it = this.elementosPartida.iterator();
         Stack<Stack<Carta>> estoque = new Stack<Stack<Carta>>();
