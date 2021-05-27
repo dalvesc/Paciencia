@@ -69,7 +69,7 @@ public class TabuleiroBigBertha {
                 }
             } else if (destino instanceof Fundacao) {
                 if (((Fundacao) destino).aceitaCarta(origem.verCartaTopo())) {
-                    this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());
+                    this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());//erro aqui na hora do estoque
                 }
             } else if (destino instanceof FundacaoEspecial) {
                 if (((FundacaoEspecial) destino).aceitaCarta(origem.verCartaTopo())) {

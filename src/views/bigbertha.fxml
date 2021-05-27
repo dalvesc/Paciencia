@@ -46,21 +46,21 @@
       <AnchorPane prefHeight="650.0" prefWidth="1300.0">
          <children>
             <ListView fx:id="estoque" layoutX="17.0" layoutY="23.0" prefHeight="95.0" prefWidth="110.0" />
-            <ListView fx:id="fileira6" layoutX="436.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira7" layoutX="522.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira8" layoutX="608.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira9" layoutX="694.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira10" layoutX="780.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira11" layoutX="866.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira12" layoutX="952.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira13" layoutX="1038.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira14" layoutX="1124.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira15" layoutX="1210.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira5" layoutX="350.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira4" layoutX="264.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira3" layoutX="178.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira2" layoutX="92.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
-            <ListView fx:id="fileira1" layoutX="6.0" layoutY="126.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira6" layoutX="436.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira7" layoutX="522.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira8" layoutX="608.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira9" layoutX="694.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira10" layoutX="780.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira11" layoutX="866.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira12" layoutX="952.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira13" layoutX="1038.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira14" layoutX="1124.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira15" layoutX="1210.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira5" layoutX="350.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira4" layoutX="264.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira3" layoutX="178.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira2" layoutX="92.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
+            <ListView fx:id="fileira1" layoutX="6.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
             <Label fx:id="fundacao1" layoutX="178.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 1">
                <font>
                   <Font size="18.0" />
@@ -111,7 +111,7 @@
                   <Font size="28.0" />
                </font>
             </Label>
-            <MenuButton fx:id="deMovimento" layoutX="28.0" layoutY="508.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" text="De">
+            <MenuButton fx:id="deMovimento" layoutX="32.0" layoutY="546.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" text="De">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#estoqueID" text="ESTOQUE" />
                   <MenuItem mnemonicParsing="false" onAction="#fileiraID1" text="FILEIRA 1" />
@@ -130,7 +130,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#fileiraID14" text="FILEIRA 14" />
                   <MenuItem mnemonicParsing="false" onAction="#fileiraID15" text="FILEIRA 15" />
                </items></MenuButton>
-            <MenuButton fx:id="paraMovimento" layoutX="264.0" layoutY="508.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" text="Para">
+            <MenuButton fx:id="paraMovimento" layoutX="268.0" layoutY="546.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" text="Para">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#fileiraIP1" text="FILEIRA 1" />
                   <MenuItem mnemonicParsing="false" onAction="#fileiraIP2" text="FILEIRA 2" />
@@ -158,15 +158,85 @@
                   <MenuItem mnemonicParsing="false" onAction="#fudacaoIPK" text="FUNDAÇÃO REI" />
                </items>
             </MenuButton>
-            <Button fx:id="botaoMover" layoutX="496.0" layoutY="523.0" mnemonicParsing="false" onAction="#botaoMover" text="Mover" />
-            <Label layoutX="41.0" layoutY="431.0" prefHeight="30.0" prefWidth="460.0" text="Selecione a partir de qual carta deseja movimentar">
+            <Button fx:id="botaoMover" layoutX="500.0" layoutY="561.0" mnemonicParsing="false" onAction="#botaoMover" text="Mover" />
+            <Label layoutX="34.0" layoutY="500.0" prefHeight="30.0" prefWidth="503.0" text="Selecione de onde e para onde você deseja movimentar">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="168.0" layoutY="461.0" prefHeight="30.0" prefWidth="331.0" text="da fileira em que você quer remover">
+            <Label layoutX="14.0" layoutY="130.0" text="Fileira 1">
                <font>
-                  <Font size="20.0" />
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="104.0" layoutY="130.0" text="Fileira 2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="190.0" layoutY="130.0" text="Fileira 3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="276.0" layoutY="130.0" text="Fileira 4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="362.0" layoutY="130.0" text="Fileira 5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="448.0" layoutY="130.0" text="Fileira 6">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="534.0" layoutY="130.0" text="Fileira 7">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="620.0" layoutY="130.0" text="Fileira 8">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="706.0" layoutY="130.0" text="Fileira 9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="787.0" layoutY="130.0" text="Fileira 10">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="873.0" layoutY="130.0" text="Fileira 11">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="959.0" layoutY="130.0" text="Fileira 12">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="1045.0" layoutY="130.0" text="Fileira 13">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="1131.0" layoutY="130.0" text="Fileira 14">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="1217.0" layoutY="130.0" text="Fileira 15">
+               <font>
+                  <Font size="18.0" />
                </font>
             </Label>
          </children>
