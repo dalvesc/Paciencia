@@ -13,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+
 
 
 /**
@@ -118,6 +120,7 @@ public class bigBerthaController implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
         setFileiras();
+        setMenu();
     }
 
     private void setFileiras(){
@@ -154,6 +157,44 @@ public class bigBerthaController implements Initializable {
             fileira1.setItems(data); 
         }
 
+    }
+
+    private void setMenu(){
+        MenuItem estoque = new MenuItem("ESTOQUE");
+        MenuItem fileira1 = new MenuItem("FILEIRA 1");
+        MenuItem fileira2 = new MenuItem("FILEIRA 2");
+        MenuItem fileira3 = new MenuItem("FILEIRA 3");
+        MenuItem fileira4 = new MenuItem("FILEIRA 4");
+        MenuItem fileira5 = new MenuItem("FILEIRA 5");
+        MenuItem fileira6 = new MenuItem("FILEIRA 6");
+        MenuItem fileira7 = new MenuItem("FILEIRA 7");
+        MenuItem fileira8 = new MenuItem("FILEIRA 8");
+        MenuItem fileira9 = new MenuItem("FILEIRA 9");
+        MenuItem fileira10 = new MenuItem("FILEIRA 10");
+        MenuItem fileira11 = new MenuItem("FILEIRA 11");
+        MenuItem fileira12 = new MenuItem("FILEIRA 12");
+        MenuItem fileira13 = new MenuItem("FILEIRA 13");
+        MenuItem fileira14 = new MenuItem("FILEIRA 14");
+        MenuItem fileira15 = new MenuItem("FILEIRA 15");
+        MenuItem fundacao1 = new MenuItem("FUNDAÇAO 1");
+        MenuItem fundacao2 = new MenuItem("FUNDAÇAO 2");
+        MenuItem fundacao3 = new MenuItem("FUNDAÇAO 3");
+        MenuItem fundacao4 = new MenuItem("FUNDAÇAO 4");
+        MenuItem fundacao5 = new MenuItem("FUNDAÇAO 5");
+        MenuItem fundacao6 = new MenuItem("FUNDAÇAO 6");
+        MenuItem fundacao7 = new MenuItem("FUNDAÇAO 7");
+        MenuItem fundacao8 = new MenuItem("FUNDAÇAO 8");
+        MenuItem fundacaoK = new MenuItem("FUNDAÇAO K");
+
+        deMovimento.getItems().addAll(estoque, fileira1, fileira2, fileira3, fileira4,
+        fileira5, fileira6, fileira7, fileira8, fileira9, fileira10, fileira11, fileira12,
+        fileira13, fileira14, fileira15);
+
+        paraMovimento.getItems().addAll(fileira1, fileira2, fileira3, fileira4, fileira5,
+        fileira6, fileira7, fileira8, fileira9, fileira10, fileira11, fileira12, fileira13,
+        fileira14, fileira15, fundacao1, fundacao2, fundacao3, fundacao4, fundacao5, fundacao6, 
+        fundacao7, fundacao8, fundacaoK);
+        
     }
 }
 
