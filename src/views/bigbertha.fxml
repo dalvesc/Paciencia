@@ -155,7 +155,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#fudacaoIP6" text="FUNDAÇÃO 6" />
                   <MenuItem mnemonicParsing="false" onAction="#fudacaoIP7" text="FUNDAÇÃO 7" />
                   <MenuItem mnemonicParsing="false" onAction="#fudacaoIP8" text="FUNDAÇÃO 8" />
-                  <MenuItem mnemonicParsing="false" onAction="#fudacaoIPK" text="FUNDAÇÃO K" />
+                  <MenuItem mnemonicParsing="false" onAction="#fudacaoIPK" text="FUNDAÇÃO REI" />
                </items>
             </MenuButton>
             <Button fx:id="botaoMover" layoutX="496.0" layoutY="523.0" mnemonicParsing="false" onAction="#botaoMover" text="Mover" />
