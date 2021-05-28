@@ -110,7 +110,6 @@ public class bigBerthaController implements Initializable {
     @FXML
     private Label labelTenteNovamente;
 
-
     private int movimentoDE = 0;
     private int movimentoPARA = 0;
 
@@ -119,9 +118,14 @@ public class bigBerthaController implements Initializable {
     Stack<Stack<Carta>> fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();
     Stack<Stack<Carta>> fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();
 
+    Stack<Carta> estoqueAUX2 = estoqueL.peek();
+    Stack<Carta> estoqueAUX = new Stack<Carta>();
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println(estoqueL);
+        System.out.println(estoqueAUX2);
+
         setFileiras();
         setEstoque();
     }
@@ -164,195 +168,243 @@ public class bigBerthaController implements Initializable {
 
     private void setEstoque() {
         if (!estoqueL.empty()) {
-            Stack<Carta> estoqueAUX = new Stack<Carta>();
-            Stack<Carta> estoqueAUX2 = estoqueL.pop();
-            for (int i = 0; i < 3; i++) {
-                Carta cartaAUX = estoqueAUX2.pop();
+            for (int i = 1; i <= 3; i++) {
+                Carta cartaAUX = estoqueAUX2.get(estoqueAUX2.size() - i);
                 estoqueAUX.push(cartaAUX);
             }
             ObservableList<Carta> data = FXCollections.observableList(estoqueAUX);
             estoque.setItems(data);
         }
+
+    }
+
+    private void atualizaEstoque() {
+        estoqueAUX.remove(0);
+        if(estoqueAUX.isEmpty()){
+            setEstoque();//testar erro
+        }
+        ObservableList<Carta> data = FXCollections.observableList(estoqueAUX);
+        estoque.setItems(data);
     }
 
     @FXML
     void botaoMover(ActionEvent event) {
-        TabuleiroBigBertha.getInstance().moverCarta(movimentoDE, movimentoPARA);
+        boolean resp = TabuleiroBigBertha.getInstance().moverCarta(movimentoDE, movimentoPARA);
+        System.out.println(resp);
+        if (resp) {
 
-        this.estoqueL = TabuleiroBigBertha.getInstance().getEstoque();
-        this.fileiras = TabuleiroBigBertha.getInstance().getTableau();
-        this.fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();
-        this.fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();
-    
-        setFileiras();
-        setEstoque();
+            this.estoqueL = TabuleiroBigBertha.getInstance().getEstoque();
+            this.fileiras = TabuleiroBigBertha.getInstance().getTableau();
+            this.fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();
+            this.fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();
+
+            setFileiras();
+            if (movimentoDE == 24) {
+                if (estoque.getItems().isEmpty()) {
+                    setEstoque();
+                }
+                atualizaEstoque();
+            }
+        }
     }
 
     @FXML
-    void estoqueID(ActionEvent event){
+    void estoqueID(ActionEvent event) {
         movimentoDE = 24;
     }
-
 
     @FXML
     void fileiraID1(ActionEvent event) {
         movimentoDE = 9;
     }
+
     @FXML
     void fileiraID2(ActionEvent event) {
         movimentoDE = 10;
     }
+
     @FXML
     void fileiraID3(ActionEvent event) {
         movimentoDE = 11;
     }
+
     @FXML
     void fileiraID4(ActionEvent event) {
         movimentoDE = 12;
     }
+
     @FXML
     void fileiraID5(ActionEvent event) {
         movimentoDE = 13;
     }
+
     @FXML
     void fileiraID6(ActionEvent event) {
         movimentoDE = 14;
     }
+
     @FXML
     void fileiraID7(ActionEvent event) {
         movimentoDE = 15;
     }
+
     @FXML
     void fileiraID8(ActionEvent event) {
         movimentoDE = 16;
     }
+
     @FXML
     void fileiraID9(ActionEvent event) {
         movimentoDE = 17;
     }
+
     @FXML
     void fileiraID10(ActionEvent event) {
         movimentoDE = 18;
     }
+
     @FXML
     void fileiraID11(ActionEvent event) {
         movimentoDE = 19;
     }
+
     @FXML
     void fileiraID12(ActionEvent event) {
         movimentoDE = 20;
     }
+
     @FXML
     void fileiraID13(ActionEvent event) {
         movimentoDE = 21;
     }
+
     @FXML
     void fileiraID14(ActionEvent event) {
         movimentoDE = 22;
     }
+
     @FXML
     void fileiraID15(ActionEvent event) {
         movimentoDE = 23;
     }
- 
 
     @FXML
     void fileiraIP1(ActionEvent event) {
         movimentoPARA = 9;
     }
+
     @FXML
     void fileiraIP2(ActionEvent event) {
         movimentoPARA = 10;
     }
+
     @FXML
     void fileiraIP3(ActionEvent event) {
         movimentoPARA = 11;
     }
+
     @FXML
     void fileiraIP4(ActionEvent event) {
         movimentoPARA = 12;
     }
+
     @FXML
     void fileiraIP5(ActionEvent event) {
         movimentoPARA = 13;
     }
+
     @FXML
     void fileiraIP6(ActionEvent event) {
         movimentoPARA = 14;
     }
+
     @FXML
     void fileiraIP7(ActionEvent event) {
         movimentoPARA = 15;
     }
+
     @FXML
     void fileiraIP8(ActionEvent event) {
         movimentoPARA = 16;
     }
+
     @FXML
     void fileiraIP9(ActionEvent event) {
         movimentoPARA = 17;
     }
+
     @FXML
     void fileiraIP10(ActionEvent event) {
         movimentoPARA = 18;
     }
+
     @FXML
     void fileiraIP11(ActionEvent event) {
         movimentoPARA = 19;
     }
+
     @FXML
     void fileiraIP12(ActionEvent event) {
         movimentoPARA = 20;
     }
+
     @FXML
     void fileiraIP13(ActionEvent event) {
         movimentoPARA = 21;
     }
+
     @FXML
     void fileiraIP14(ActionEvent event) {
         movimentoPARA = 22;
     }
+
     @FXML
     void fileiraIP15(ActionEvent event) {
         movimentoPARA = 23;
     }
 
-
     @FXML
-    void fudacaoIP1(ActionEvent event){
+    void fudacaoIP1(ActionEvent event) {
         movimentoPARA = 0;
     }
+
     @FXML
-    void fudacaoIP2(ActionEvent event){
+    void fudacaoIP2(ActionEvent event) {
         movimentoPARA = 1;
     }
+
     @FXML
-    void fudacaoIP3(ActionEvent event){
+    void fudacaoIP3(ActionEvent event) {
         movimentoPARA = 2;
     }
+
     @FXML
-    void fudacaoIP4(ActionEvent event){
+    void fudacaoIP4(ActionEvent event) {
         movimentoPARA = 3;
     }
+
     @FXML
-    void fudacaoIP5(ActionEvent event){
+    void fudacaoIP5(ActionEvent event) {
         movimentoPARA = 4;
     }
+
     @FXML
-    void fudacaoIP6(ActionEvent event){
+    void fudacaoIP6(ActionEvent event) {
         movimentoPARA = 5;
     }
+
     @FXML
-    void fudacaoIP7(ActionEvent event){
+    void fudacaoIP7(ActionEvent event) {
         movimentoPARA = 6;
     }
+
     @FXML
-    void fudacaoIP8(ActionEvent event){
+    void fudacaoIP8(ActionEvent event) {
         movimentoPARA = 7;
     }
+
     @FXML
-    void fudacaoIPK(ActionEvent event){
+    void fudacaoIPK(ActionEvent event) {
         movimentoPARA = 8;
     }
-}   
-
+}

@@ -24,8 +24,6 @@ public class TabuleiroBigBertha {
 
     private TabuleiroBigBertha() throws InvalidAttributeValueException {
         this.elementosPartida = new PartidaBigBertha().create();
-        System.out.println(elementosPartida.size());
-
     }
 
     public static TabuleiroBigBertha getInstance() {
@@ -55,7 +53,7 @@ public class TabuleiroBigBertha {
      * @param de   estrtura de origem.
      * @param para estrutura de destino.
      */
-    public void moverCarta(int de, int para) {
+    public Boolean moverCarta(int de, int para) {
         Estrutura origem = this.elementosPartida.get(de);
         Estrutura destino = this.elementosPartida.get(para);
 
@@ -65,15 +63,25 @@ public class TabuleiroBigBertha {
                         .empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar(qtdCartasEstoque));
             } else if (destino instanceof Tableau) {
                 if (((Tableau) destino).aceitaCarta(origem.verCartaTopo())) {
-                    this.elementosPartida.get(para).empilhar(((Descarte) this.elementosPartida.get(de)).desempilhar());
+                    this.elementosPartida.get(para).empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar());
+                }else{
+                    return false;
                 }
             } else if (destino instanceof Fundacao) {
                 if (((Fundacao) destino).aceitaCarta(origem.verCartaTopo())) {
                     this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());//erro aqui na hora do estoque
+                }else{
+                    return false;
                 }
             } else if (destino instanceof FundacaoEspecial) {
                 if (((FundacaoEspecial) destino).aceitaCarta(origem.verCartaTopo())) {
+                    if(origem instanceof Tableau){
                     this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());
+                    }else{
+                        this.elementosPartida.get(para).empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar());
+                    }
+                }else{
+                    return false;
                 }
             }
         } else if (origem instanceof Tableau) {
@@ -86,7 +94,7 @@ public class TabuleiroBigBertha {
                     if (((Tableau) destino).aceitaCarta_OutraRegra(percorrida)) {
                         break;
                     } else {
-                        quantidadeRejeitada += 1;
+                        quantidadeRejeitada += 1; //me explicar isso erro
                     }
                 }
                 quantidadeDesempilhar = aMover.size() - quantidadeRejeitada;
@@ -96,13 +104,18 @@ public class TabuleiroBigBertha {
             } else if (destino instanceof Fundacao) {
                 if (((Fundacao) destino).aceitaCarta(origem.verCartaTopo())) {
                     this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());
+                }else{
+                    return false;
                 }
             } else if (destino instanceof FundacaoEspecial) {
                 if (((FundacaoEspecial) destino).aceitaCarta(origem.verCartaTopo())) {
                     this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());
+                }else{
+                    return false;
                 }
             }
         }
+        return true;
     }
 
     /**
