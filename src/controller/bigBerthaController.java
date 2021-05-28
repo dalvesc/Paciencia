@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.paint.Color;
 
 /**
  * Controller para funções do jogo big bertha.
@@ -166,8 +167,42 @@ public class bigBerthaController implements Initializable {
 
     }
 
+
+    private void setFundacoes() {
+        if (!fundacoes.empty()) {
+            String data = fundacoes.pop().pop().toString();
+            System.out.println(data);
+            fundacao8.setText(data);
+            data = fundacoes.pop().pop().toString();
+            fundacao7.setText(data);
+            data = fundacoes.pop().pop().toString();
+            fundacao6.setText(data);
+            data = fundacoes.pop().pop().toString();
+            fundacao5.setText(data);
+            data = fundacoes.pop().pop().toString();
+            fundacao4.setText(data);
+            data = fundacoes.pop().pop().toString();
+            fundacao3.setText(data);
+            data = fundacoes.pop().pop().toString();
+            fundacao2.setText(data);
+            data = fundacoes.pop().pop().toString();
+            fundacao1.setText(data);
+        }
+    }
+
+    private void setFundacaoEspecial() {
+        if (!fundacaoEspecial.empty()) {
+            String data = fundacaoEspecial.pop().pop().toString();
+            System.out.println(data);
+            fundacaoK.setText(data);
+        }
+    }
+
     private void setEstoque() {
         if (!estoqueL.empty()) {
+            //int qndtRevelar = estoqueAUX.isEmpty() ? 3 : 1;
+            //System.out.println("QUANTIDADEEEEEEE: " + qndtRevelar);
+            //for (int i = 1; i <= qndtRevelar; i++) {
             for (int i = 1; i <= 3; i++) {
                 Carta cartaAUX = estoqueAUX2.get(estoqueAUX2.size() - i);
                 estoqueAUX.push(cartaAUX);
@@ -193,11 +228,14 @@ public class bigBerthaController implements Initializable {
         System.out.println(resp);
         if (resp) {
 
+
             this.estoqueL = TabuleiroBigBertha.getInstance().getEstoque();
             this.fileiras = TabuleiroBigBertha.getInstance().getTableau();
             this.fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();
             this.fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();
 
+            setFundacoes();
+            setFundacaoEspecial();
             setFileiras();
             if (movimentoDE == 24) {
                 if (estoque.getItems().isEmpty()) {

@@ -31,6 +31,7 @@ public class FundacaoEspecial extends Estrutura implements Empilhavel {
 
   @Override
   public boolean aceitaCarta(Carta carta) {
+        System.out.println("CARTAAAAAAAAAAA: " + carta.getValor());
         return carta.getValor() == Valor.REI;
     }
 }

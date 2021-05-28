@@ -8,6 +8,14 @@
             "type": "java",
             "name": "Launch App",
             "request": "launch",
+            "vmArgs": "--module-path /Users/adlla/Documents/JavaLibs/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml",
+            "mainClass": "App",
+            "projectName": "Paciencia_6646b7d6"
+        },
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
             "vmArgs": "--module-path /Users/Daniel/Documents/DEV/Java/JavaLibs/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml",
             "mainClass": "App",
             "projectName": "Paciencia_3bad1137"
