@@ -167,31 +167,39 @@ public class bigBerthaController implements Initializable {
 
     }
 
-
     private void setFundacoes() {
         if (!fundacoes.empty()) {
-            if(movimentoPARA == 0){
+            if (movimentoPARA == 0) {
                 String data = fundacoes.get(0).toString();
-                System.out.println(data);
                 fundacao1.setText(data);
+            } else if (movimentoPARA == 1) {
+                String data = fundacoes.get(1).toString();
+                fundacao2.setText(data);
+            } else if (movimentoPARA == 2) {
+                String data = fundacoes.get(2).toString();
+                System.out.println(data);
+                fundacao3.setText(data);
+            } else if (movimentoPARA == 3) {
+                String data = fundacoes.get(3).toString();
+                System.out.println(data);
+                fundacao4.setText(data);
+            } else if (movimentoPARA == 4) {
+                String data = fundacoes.get(4).toString();
+                System.out.println(data);
+                fundacao5.setText(data);
+            } else if (movimentoPARA == 5) {
+                String data = fundacoes.get(5).toString();
+                System.out.println(data);
+                fundacao6.setText(data);
+            } else if (movimentoPARA == 6) {
+                String data = fundacoes.get(6).toString();
+                System.out.println(data);
+                fundacao7.setText(data);
+            } else if (movimentoPARA == 7) {
+                String data = fundacoes.get(7).toString();
+                System.out.println(data);
+                fundacao8.setText(data);
             }
-            //String data = fundacao.pop().toString();  
-            //System.out.println(data);
-            //fundacao8.setText(data);
-            //data = fundacoes.pop().pop().toString();
-            //fundacao7.setText(data);
-            //data = fundacoes.pop().pop().toString();
-            //fundacao6.setText(data);
-            //data = fundacoes.pop().pop().toString();
-            //fundacao5.setText(data);
-            //data = fundacoes.pop().pop().toString();
-            //fundacao4.setText(data);
-            //data = fundacoes.pop().pop().toString();
-            //fundacao3.setText(data);
-            //data = fundacoes.pop().pop().toString();
-            //fundacao2.setText(data);
-            //data = fundacoes.pop().pop().toString();
-            //fundacao1.setText(data);
         }
     }
 
@@ -205,9 +213,9 @@ public class bigBerthaController implements Initializable {
 
     private void setEstoque() {
         if (!estoqueL.empty()) {
-            //int qndtRevelar = estoqueAUX.isEmpty() ? 3 : 1;
-            //System.out.println("QUANTIDADEEEEEEE: " + qndtRevelar);
-            //for (int i = 1; i <= qndtRevelar; i++) {
+            // int qndtRevelar = estoqueAUX.isEmpty() ? 3 : 1;
+            // System.out.println("QUANTIDADEEEEEEE: " + qndtRevelar);
+            // for (int i = 1; i <= qndtRevelar; i++) {
             for (int i = 1; i <= 3; i++) {
                 Carta cartaAUX = estoqueAUX2.get(estoqueAUX2.size() - i);
                 estoqueAUX.push(cartaAUX);
@@ -220,8 +228,8 @@ public class bigBerthaController implements Initializable {
 
     private void atualizaEstoque() {
         estoqueAUX.remove(0);
-        if(estoqueAUX.isEmpty()){
-            setEstoque();//testar erro
+        if (estoqueAUX.isEmpty()) {
+            setEstoque();// testar erro
         }
         ObservableList<Carta> data = FXCollections.observableList(estoqueAUX);
         estoque.setItems(data);
@@ -232,7 +240,6 @@ public class bigBerthaController implements Initializable {
         boolean resp = TabuleiroBigBertha.getInstance().moverCarta(movimentoDE, movimentoPARA);
         System.out.println(resp);
         if (resp) {
-
 
             this.estoqueL = TabuleiroBigBertha.getInstance().getEstoque();
             this.fileiras = TabuleiroBigBertha.getInstance().getTableau();
@@ -247,9 +254,9 @@ public class bigBerthaController implements Initializable {
                 atualizaEstoque();
             }
 
-            if(movimentoPARA < 8){
+            if (movimentoPARA < 8) {
                 setFundacoes();
-            }else if(movimentoPARA == 8){
+            } else if (movimentoPARA == 8) {
                 setFundacaoEspecial();
 
             }
