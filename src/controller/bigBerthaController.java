@@ -135,9 +135,6 @@ public class bigBerthaController implements Initializable {
      */
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println(estoqueL);
-        System.out.println(estoqueAUX2);
-
         setFileiras();
         setEstoque();
         corBackgroundLabel();
@@ -221,27 +218,21 @@ public class bigBerthaController implements Initializable {
                 fundacao2.setText(data);
             } else if (movimentoPARA == 2) {
                 String data = fundacoes.get(2).peek().toString();
-                System.out.println(data);
                 fundacao3.setText(data);
             } else if (movimentoPARA == 3) {
                 String data = fundacoes.get(3).peek().toString();
-                System.out.println(data);
                 fundacao4.setText(data);
             } else if (movimentoPARA == 4) {
                 String data = fundacoes.get(4).peek().toString();
-                System.out.println(data);
                 fundacao5.setText(data);
             } else if (movimentoPARA == 5) {
                 String data = fundacoes.get(5).peek().toString();
-                System.out.println(data);
                 fundacao6.setText(data);
             } else if (movimentoPARA == 6) {
                 String data = fundacoes.get(6).peek().toString();
-                System.out.println(data);
                 fundacao7.setText(data);
             } else if (movimentoPARA == 7) {
                 String data = fundacoes.get(7).peek().toString();
-                System.out.println(data);
                 fundacao8.setText(data);
             }
         }
@@ -253,7 +244,6 @@ public class bigBerthaController implements Initializable {
     private void setFundacaoEspecial() {
         if (!fundacaoEspecial.empty()) {
             String data = fundacaoEspecial.pop().peek().toString();
-            System.out.println(data);
             fundacaoK.setText(data);
         }
     }
@@ -297,7 +287,6 @@ public class bigBerthaController implements Initializable {
     @FXML
     void botaoMover(ActionEvent event) throws IOException {
         boolean resp = TabuleiroBigBertha.getInstance().moverCarta(movimentoDE, movimentoPARA);
-        System.out.println(resp);
         if (!TabuleiroBigBertha.getInstance().checarVitoria()) {//caso o jogador ganhe.
             if (resp) {//caso o movimento seja possível.
                 labelTenteNovamente.setVisible(false);//colocando a label de erro para invisível .

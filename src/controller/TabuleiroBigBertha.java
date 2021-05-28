@@ -98,10 +98,10 @@ public class TabuleiroBigBertha {
                 int qualCarta = 0;
 
                 Vector<Carta> aMover = origem.getCartas();
-                System.out.println(aMover);
                 for (int i = 0; i < aMover.size(); i++) {
                     Carta percorrida = aMover.get(i);
                     if(i < aMover.size()-1){
+
                         if(compararCorEValor(percorrida, aMover.get(i+1))){
                             qualCarta++;
                         } else{
@@ -109,35 +109,15 @@ public class TabuleiroBigBertha {
                         }
                     }
                 }
-                System.out.println("QUANTIDADE DE CARTAS PARA MOVER: " + qualCarta);
-                System.out.println("MOVER A PARTIR DA CARTA: " + ((aMover.size()-1) - qualCarta));
+                
                 quantidadeDesempilhar = aMover.size() - ((aMover.size()-1) - qualCarta);
-                System.out.println("QUANTIDADE PARA DESEMPILHAR: " + quantidadeDesempilhar);
                 if (((Tableau) destino).aceitaCarta_OutraRegra(aMover.get((aMover.size()-1) - qualCarta))) {
-                    System.out.println("PODE MOVIMENTAR");
                     Stack<Carta> desempilhado = this.elementosPartida.get(de).desempilhar(quantidadeDesempilhar);
                     Collections.reverse(desempilhado);
                     this.elementosPartida.get(para).empilhar(desempilhado);
                 } else{
                     return false;
                 }
-                /*Vector<Carta> aMover = origem.getCartas();
-                int carta = aMover.size()-1;
-                boolean correto = true;
-                for (int i = carta; i <=carta; i++) {
-                    if(i == carta){
-                        if(!compararCorEValor(aMover.get(i), aMover.get(i+1))){
-                            correto = false;
-                        }
-                    }
-                }
-                if(correto){
-                    if(((Tableau) destino).aceitaCarta_OutraRegra(aMover.get(aMover.size()))){
-                        Stack<Carta> desempilhado = this.elementosPartida.get(de).desempilhar(carta);
-                        Collections.reverse(desempilhado);
-                        this.elementosPartida.get(para).empilhar(desempilhado);
-                    }
-                }*/
             } else if (destino instanceof Fundacao) {
                 if (((Fundacao) destino).aceitaCarta(origem.verCartaTopo())) {
                     this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());
@@ -160,13 +140,13 @@ public class TabuleiroBigBertha {
      * 
      * @param cartaAtual
      * @param cartaAnterior
-     * @return true caso seja possível
+     * @return true caso seja possível.
      */
     private boolean compararCorEValor(Carta cartaAtual, Carta cartaAnterior){
         boolean temValorMenor = cartaAtual.getValor().peso == cartaAnterior.getValor().peso + 1;
     
-        boolean cartaAtualIsVermelha = cartaAtual.getNomeNaipe().equals('♥') || cartaAtual.getNomeNaipe().equals('♦');
-        boolean cartaAnteriorIsVermelha = cartaAnterior.getNomeNaipe().equals('♥') || cartaAnterior.getNomeNaipe().equals('♦');
+        boolean cartaAtualIsVermelha = cartaAtual.getNomeNaipe().equals("♥") || cartaAtual.getNomeNaipe().equals("♦");
+        boolean cartaAnteriorIsVermelha = cartaAnterior.getNomeNaipe().equals("♥") || cartaAnterior.getNomeNaipe().equals("♦");
         //comparação cores
         return temValorMenor && Boolean.logicalXor(cartaAnteriorIsVermelha, cartaAtualIsVermelha);
     }
