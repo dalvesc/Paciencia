@@ -86,7 +86,7 @@ public class TabuleiroBigBertha {
             }
         } else if (origem instanceof Tableau) {
             if (destino instanceof Tableau) {
-                /*int quantidadeRejeitada = 0;
+                int quantidadeRejeitada = 0;
                 int quantidadeDesempilhar = 0;
                 Vector<Carta> aMover = origem.getCartas();
                 for (int i = 0; i < aMover.size(); i++) {
@@ -97,13 +97,17 @@ public class TabuleiroBigBertha {
                         quantidadeRejeitada += 1; //me explicar isso erro
                     }
                 }
-                quantidadeDesempilhar = aMover.size() - quantidadeRejeitada;*/
-                Vector<Carta> aMover = origem.getCartas();
-                int carta = 0;
+                quantidadeDesempilhar = aMover.size() - quantidadeRejeitada;
+                Stack<Carta> desempilhado = this.elementosPartida.get(de).desempilhar(quantidadeDesempilhar);
+                Collections.reverse(desempilhado);
+                this.elementosPartida.get(para).empilhar(desempilhado);
+                
+                /*Vector<Carta> aMover = origem.getCartas();
+                int carta = aMover.size()-1;
                 boolean correto = true;
-                for (int i = carta; i >= 0; i--) {
-                    if(i > 0){
-                        if(!compararCorEValor(aMover.get(i), aMover.get(i-1))){
+                for (int i = carta; i <=carta; i++) {
+                    if(i == carta){
+                        if(!compararCorEValor(aMover.get(i), aMover.get(i+1))){
                             correto = false;
                         }
                     }
@@ -114,7 +118,7 @@ public class TabuleiroBigBertha {
                         Collections.reverse(desempilhado);
                         this.elementosPartida.get(para).empilhar(desempilhado);
                     }
-                }
+                }*/
             } else if (destino instanceof Fundacao) {
                 if (((Fundacao) destino).aceitaCarta(origem.verCartaTopo())) {
                     this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());
