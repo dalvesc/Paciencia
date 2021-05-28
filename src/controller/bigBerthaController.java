@@ -1,6 +1,7 @@
 package controller;
 
-import java.beans.EventHandler;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Stack;
@@ -10,12 +11,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.geometry.Pos;
+
 
 /**
  * Controller para funções do jogo big bertha.
@@ -109,19 +114,25 @@ public class bigBerthaController implements Initializable {
     private Button botaoMover;
 
     @FXML
-    private Label labelTenteNovamente;
+    private Button botaoRetornar;
 
-    private int movimentoDE = 0;
-    private int movimentoPARA = 0;
+    @FXML
+    private Label labelTenteNovamente;//label de erro.
 
-    Stack<Stack<Carta>> estoqueL = TabuleiroBigBertha.getInstance().getEstoque();
-    Stack<Stack<Carta>> fileiras = TabuleiroBigBertha.getInstance().getTableau();
-    Stack<Stack<Carta>> fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();
-    Stack<Stack<Carta>> fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();
+    private int movimentoDE = 0;//salva de onde o usuário quer mover a carta.
+    private int movimentoPARA = 0;//salva para onde o  usuário quer mover a carta.
 
-    Stack<Carta> estoqueAUX2 = estoqueL.peek();
+    Stack<Stack<Carta>> estoqueL = TabuleiroBigBertha.getInstance().getEstoque();//pegando estoque.
+    Stack<Stack<Carta>> fileiras = TabuleiroBigBertha.getInstance().getTableau();//pegando tableau.
+    Stack<Stack<Carta>> fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();//pegando fundações.
+    Stack<Stack<Carta>> fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();//pegando fundação K.
+
+    Stack<Carta> estoqueAUX2 = estoqueL.peek();//salvando a stack de estoque
     Stack<Carta> estoqueAUX = new Stack<Carta>();
 
+    /**
+     * Função de inicialização.
+     */
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println(estoqueL);
@@ -129,8 +140,38 @@ public class bigBerthaController implements Initializable {
 
         setFileiras();
         setEstoque();
+        corBackgroundLabel();
     }
 
+
+    /**
+     * Cores para fundações.
+     */
+    private void corBackgroundLabel() {
+        var color = "-fx-background-color: white; -fx-border-color: black;";
+        fundacao1.setStyle(color);
+        fundacao2.setStyle(color);
+        fundacao3.setStyle(color);
+        fundacao4.setStyle(color);
+        fundacao5.setStyle(color);
+        fundacao6.setStyle(color);
+        fundacao7.setStyle(color);
+        fundacao8.setStyle(color);
+        fundacaoK.setStyle(color);
+        fundacao1.setAlignment(Pos.CENTER);
+        fundacao2.setAlignment(Pos.CENTER);
+        fundacao3.setAlignment(Pos.CENTER);
+        fundacao4.setAlignment(Pos.CENTER);
+        fundacao5.setAlignment(Pos.CENTER);
+        fundacao6.setAlignment(Pos.CENTER);
+        fundacao7.setAlignment(Pos.CENTER);
+        fundacao8.setAlignment(Pos.CENTER);
+        fundacaoK.setAlignment(Pos.CENTER);
+    }
+
+    /**
+     * Inserir cartas nas fileiras.
+     */
     private void setFileiras() {
         if (!fileiras.empty()) {
             ObservableList<Carta> data = FXCollections.observableList(fileiras.pop());
@@ -167,6 +208,9 @@ public class bigBerthaController implements Initializable {
 
     }
 
+    /**
+     * Inserir cartas nas fundações.
+     */
     private void setFundacoes() {
         if (!fundacoes.empty()) {
             if (movimentoPARA == 0) {
@@ -203,6 +247,9 @@ public class bigBerthaController implements Initializable {
         }
     }
 
+    /**
+     * Inserir cartas na fundação K.
+     */
     private void setFundacaoEspecial() {
         if (!fundacaoEspecial.empty()) {
             String data = fundacaoEspecial.pop().peek().toString();
@@ -211,11 +258,11 @@ public class bigBerthaController implements Initializable {
         }
     }
 
+    /**
+     * Inserindo cartas iniciais do estoque.
+     */
     private void setEstoque() {
         if (!estoqueL.empty()) {
-            // int qndtRevelar = estoqueAUX.isEmpty() ? 3 : 1;
-            // System.out.println("QUANTIDADEEEEEEE: " + qndtRevelar);
-            // for (int i = 1; i <= qndtRevelar; i++) {
             for (int i = 1; i <= 3; i++) {
                 Carta cartaAUX = estoqueAUX2.get(estoqueAUX2.size() - i);
                 estoqueAUX.push(cartaAUX);
@@ -226,42 +273,88 @@ public class bigBerthaController implements Initializable {
 
     }
 
+    /**
+     * Atualizando cartas do estoque.
+     */
     private void atualizaEstoque() {
         estoqueAUX.remove(0);
-        if (estoqueAUX.isEmpty()) {
-            setEstoque();// testar erro
+        if (estoqueAUX.size() < 3 && !estoqueAUX2.isEmpty()) {
+            if (estoqueAUX2.size() >= 3) {
+                Carta cartaAUX = estoqueAUX2.get(estoqueAUX2.size() - 3);
+                estoqueAUX.push(cartaAUX);
+            }
         }
         ObservableList<Carta> data = FXCollections.observableList(estoqueAUX);
         estoque.setItems(data);
     }
 
+    /**
+     * Quando apertado o botão 'mover' ele chama o método de mover.
+     * 
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void botaoMover(ActionEvent event) {
+    void botaoMover(ActionEvent event) throws IOException {
         boolean resp = TabuleiroBigBertha.getInstance().moverCarta(movimentoDE, movimentoPARA);
         System.out.println(resp);
-        if (resp) {
+        if (!TabuleiroBigBertha.getInstance().checarVitoria()) {//caso o jogador ganhe.
+            if (resp) {//caso o movimento seja possível.
+                labelTenteNovamente.setVisible(false);//colocando a label de erro para invisível .
 
-            this.estoqueL = TabuleiroBigBertha.getInstance().getEstoque();
-            this.fileiras = TabuleiroBigBertha.getInstance().getTableau();
-            this.fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();
-            this.fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();
+                this.estoqueL = TabuleiroBigBertha.getInstance().getEstoque();//atualiza cartas do estoque.
+                this.fileiras = TabuleiroBigBertha.getInstance().getTableau();//atualiza cartas fileiras.
+                this.fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();//atualiza cartas fundações.
+                this.fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();//atualiza cartas fundação K.
 
-            setFileiras();
-            if (movimentoDE == 24) {
-                if (estoque.getItems().isEmpty()) {
-                    setEstoque();
+                setFileiras();//inserindo as informações nas fileiras.
+                if (movimentoDE == 24) {//caso tenha pegado carta do estoque.
+                    atualizaEstoque();
                 }
-                atualizaEstoque();
-            }
 
-            if (movimentoPARA < 8) {
-                setFundacoes();
-            } else if (movimentoPARA == 8) {
-                setFundacaoEspecial();
-
+                if (movimentoPARA < 8) {//caso tenha movido carta para fundações.
+                    setFundacoes();
+                } else if (movimentoPARA == 8) {//caso tenha movido carta para fundação K.
+                    setFundacaoEspecial();
+                }
+            } else {
+                labelTenteNovamente.setVisible(true);//caso o movimento seja inválido.
             }
+        } else {
+            //jogador ganhou.
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/views/ganhou.fxml"));
+
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+            stage.show();
+            stage.setTitle("Ganhou");
+            botaoMover.getScene().getWindow().hide();
         }
     }
+
+    /**
+     * Botão para retornar para o menu principal.
+     * 
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    void botaoRetornar(ActionEvent event) throws IOException {
+        TabuleiroBigBertha.resetInstance();
+
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/views/menu.fxml"));
+
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Menu");
+        botaoRetornar.getScene().getWindow().hide();//ocultando tela antiga.
+    }
+
 
     @FXML
     void estoqueID(ActionEvent event) {

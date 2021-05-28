@@ -50,7 +50,7 @@ public class TabuleiroBigBertha {
      * Método que move a(s) carta(s) de uma estrutura para outra de acordo com as
      * regras do Big Bertha.
      * 
-     * @param de   estrtura de origem.
+     * @param de estrutura de origem.
      * @param para estrutura de destino.
      */
     public Boolean moverCarta(int de, int para) {
@@ -69,7 +69,7 @@ public class TabuleiroBigBertha {
                 }
             } else if (destino instanceof Fundacao) {
                 if (((Fundacao) destino).aceitaCarta(origem.verCartaTopo())) {
-                    this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());//erro aqui na hora do estoque
+                    this.elementosPartida.get(para).empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar());//erro aqui na hora do estoque
                 }else{
                     return false;
                 }
@@ -88,20 +88,32 @@ public class TabuleiroBigBertha {
             if (destino instanceof Tableau) {
                 int quantidadeRejeitada = 0;
                 int quantidadeDesempilhar = 0;
+                int qualCarta = 0;
+
                 Vector<Carta> aMover = origem.getCartas();
+                System.out.println(aMover);
                 for (int i = 0; i < aMover.size(); i++) {
                     Carta percorrida = aMover.get(i);
-                    if (((Tableau) destino).aceitaCarta_OutraRegra(percorrida)) {
-                        break;
-                    } else {
-                        quantidadeRejeitada += 1; //me explicar isso erro
+                    if(i < aMover.size()-1){
+                        if(compararCorEValor(percorrida, aMover.get(i+1))){
+                            qualCarta++;
+                        } else{
+                            qualCarta = 0;
+                        }
                     }
                 }
-                quantidadeDesempilhar = aMover.size() - quantidadeRejeitada;
-                Stack<Carta> desempilhado = this.elementosPartida.get(de).desempilhar(quantidadeDesempilhar);
-                Collections.reverse(desempilhado);
-                this.elementosPartida.get(para).empilhar(desempilhado);
-                
+                System.out.println("QUANTIDADE DE CARTAS PARA MOVER: " + qualCarta);
+                System.out.println("MOVER A PARTIR DA CARTA: " + ((aMover.size()-1) - qualCarta));
+                quantidadeDesempilhar = aMover.size() - ((aMover.size()-1) - qualCarta);
+                System.out.println("QUANTIDADE PARA DESEMPILHAR: " + quantidadeDesempilhar);
+                if (((Tableau) destino).aceitaCarta_OutraRegra(aMover.get((aMover.size()-1) - qualCarta))) {
+                    System.out.println("PODE MOVIMENTAR");
+                    Stack<Carta> desempilhado = this.elementosPartida.get(de).desempilhar(quantidadeDesempilhar);
+                    Collections.reverse(desempilhado);
+                    this.elementosPartida.get(para).empilhar(desempilhado);
+                } else{
+                    return false;
+                }
                 /*Vector<Carta> aMover = origem.getCartas();
                 int carta = aMover.size()-1;
                 boolean correto = true;
@@ -137,7 +149,7 @@ public class TabuleiroBigBertha {
     }
 
     private boolean compararCorEValor(Carta cartaAtual, Carta cartaAnterior){
-        boolean temValorMenor = cartaAtual.getValor().peso == cartaAnterior.getValor().peso - 1;
+        boolean temValorMenor = cartaAtual.getValor().peso == cartaAnterior.getValor().peso + 1;
     
         boolean cartaAtualIsVermelha = cartaAtual.getNomeNaipe().equals('♥') || cartaAtual.getNomeNaipe().equals('♦');
         boolean cartaAnteriorIsVermelha = cartaAnterior.getNomeNaipe().equals('♥') || cartaAnterior.getNomeNaipe().equals('♦');

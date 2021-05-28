@@ -61,47 +61,47 @@
             <ListView fx:id="fileira3" layoutX="178.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
             <ListView fx:id="fileira2" layoutX="92.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
             <ListView fx:id="fileira1" layoutX="6.0" layoutY="164.0" prefHeight="305.0" prefWidth="85.0" />
-            <Label fx:id="fundacao1" layoutX="178.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 1">
+            <Label fx:id="fundacao1" layoutX="178.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao2" layoutX="272.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 2">
+            <Label fx:id="fundacao2" layoutX="272.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao3" layoutX="366.0" layoutY="54.0" prefHeight="43.0" prefWidth="103.0" text="Fundacao 3 ">
+            <Label fx:id="fundacao3" layoutX="366.0" layoutY="54.0" prefHeight="43.0" prefWidth="103.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao4" layoutX="469.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 4">
+            <Label fx:id="fundacao4" layoutX="469.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao5" layoutX="565.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 5">
+            <Label fx:id="fundacao5" layoutX="565.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao6" layoutX="659.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 6">
+            <Label fx:id="fundacao6" layoutX="659.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao7" layoutX="753.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 7">
+            <Label fx:id="fundacao7" layoutX="753.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacao8" layoutX="847.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 8">
+            <Label fx:id="fundacao8" layoutX="847.0" layoutY="54.0" prefHeight="43.0" prefWidth="94.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="fundacaoK" layoutX="1034.0" layoutY="54.0" prefHeight="43.0" prefWidth="110.0" text="Fundacao REI">
+            <Label fx:id="fundacaoK" layoutX="1034.0" layoutY="54.0" prefHeight="43.0" prefWidth="110.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -239,6 +239,56 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <Label fx:id="fundacao11" layoutX="178.0" layoutY="14.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="fundacao21" layoutX="272.0" layoutY="14.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="fundacao31" layoutX="366.0" layoutY="14.0" prefHeight="43.0" prefWidth="103.0" text="Fundacao 3 ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="fundacao41" layoutX="469.0" layoutY="14.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="fundacao51" layoutX="565.0" layoutY="14.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="fundacao61" layoutX="659.0" layoutY="14.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 6">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="fundacao71" layoutX="753.0" layoutY="14.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 7">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="fundacao81" layoutX="847.0" layoutY="14.0" prefHeight="43.0" prefWidth="94.0" text="Fundacao 8">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="fundacaoK1" layoutX="1034.0" layoutY="14.0" prefHeight="43.0" prefWidth="110.0" text="Fundacao REI">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="botaoRetornar" layoutX="1026.0" layoutY="550.0" mnemonicParsing="false" onAction="#botaoRetornar" prefHeight="48.0" prefWidth="110.0" text="Retornar">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
