@@ -170,23 +170,28 @@ public class bigBerthaController implements Initializable {
 
     private void setFundacoes() {
         if (!fundacoes.empty()) {
-            String data = fundacoes.pop().pop().toString();
-            System.out.println(data);
-            fundacao8.setText(data);
-            data = fundacoes.pop().pop().toString();
-            fundacao7.setText(data);
-            data = fundacoes.pop().pop().toString();
-            fundacao6.setText(data);
-            data = fundacoes.pop().pop().toString();
-            fundacao5.setText(data);
-            data = fundacoes.pop().pop().toString();
-            fundacao4.setText(data);
-            data = fundacoes.pop().pop().toString();
-            fundacao3.setText(data);
-            data = fundacoes.pop().pop().toString();
-            fundacao2.setText(data);
-            data = fundacoes.pop().pop().toString();
-            fundacao1.setText(data);
+            if(movimentoPARA == 0){
+                String data = fundacoes.get(0).toString();
+                System.out.println(data);
+                fundacao1.setText(data);
+            }
+            //String data = fundacao.pop().toString();  
+            //System.out.println(data);
+            //fundacao8.setText(data);
+            //data = fundacoes.pop().pop().toString();
+            //fundacao7.setText(data);
+            //data = fundacoes.pop().pop().toString();
+            //fundacao6.setText(data);
+            //data = fundacoes.pop().pop().toString();
+            //fundacao5.setText(data);
+            //data = fundacoes.pop().pop().toString();
+            //fundacao4.setText(data);
+            //data = fundacoes.pop().pop().toString();
+            //fundacao3.setText(data);
+            //data = fundacoes.pop().pop().toString();
+            //fundacao2.setText(data);
+            //data = fundacoes.pop().pop().toString();
+            //fundacao1.setText(data);
         }
     }
 
@@ -234,14 +239,19 @@ public class bigBerthaController implements Initializable {
             this.fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();
             this.fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();
 
-            setFundacoes();
-            setFundacaoEspecial();
             setFileiras();
             if (movimentoDE == 24) {
                 if (estoque.getItems().isEmpty()) {
                     setEstoque();
                 }
                 atualizaEstoque();
+            }
+
+            if(movimentoPARA < 8){
+                setFundacoes();
+            }else if(movimentoPARA == 8){
+                setFundacaoEspecial();
+
             }
         }
     }
