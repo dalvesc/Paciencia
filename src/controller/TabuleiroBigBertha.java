@@ -1,16 +1,16 @@
 package controller;
 
+
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Stack;
 import java.util.Vector;
-
 import javax.management.InvalidAttributeValueException;
-
 import models.abstracts.Carta;
 import models.abstracts.Estrutura;
 import models.partidas.PartidaBigBertha;
 import models.estruturas.*;
+
 
 /**
  * Regras big bertha.
@@ -26,6 +26,11 @@ public class TabuleiroBigBertha {
         this.elementosPartida = new PartidaBigBertha().create();
     }
 
+    /**
+     * Retorna o tabuleiro do jogo.
+     * 
+     * @return instância do tabuleiro.
+     */
     public static TabuleiroBigBertha getInstance() {
         if (tabuleiroBB == null) {
             try {
@@ -37,6 +42,9 @@ public class TabuleiroBigBertha {
         return tabuleiroBB;
     }
 
+    /**
+     * Reseta o tabuleiro do jogo.
+     */
     public static void resetInstance() {
         try {
             tabuleiroBB = new TabuleiroBigBertha();
@@ -46,7 +54,6 @@ public class TabuleiroBigBertha {
     }
 
     /**
-     * 
      * Método que move a(s) carta(s) de uma estrutura para outra de acordo com as
      * regras do Big Bertha.
      * 
@@ -148,6 +155,13 @@ public class TabuleiroBigBertha {
         return true;
     }
 
+    /**
+     * Compara cor e valor das cartas para verificar se é possível o empilhamento nas fileiras.
+     * 
+     * @param cartaAtual
+     * @param cartaAnterior
+     * @return true caso seja possível
+     */
     private boolean compararCorEValor(Carta cartaAtual, Carta cartaAnterior){
         boolean temValorMenor = cartaAtual.getValor().peso == cartaAnterior.getValor().peso + 1;
     
@@ -158,7 +172,6 @@ public class TabuleiroBigBertha {
     }
 
     /**
-     * 
      * Método que revela a penultima carta do estoque, ficando assim as três últimas
      * cartas visiveis.
      */
@@ -197,8 +210,9 @@ public class TabuleiroBigBertha {
         }
         return true;
     }
+
     /**
-     * Retorna as fileiras do jogo da 15 para 1.
+     * Retorna as fileiras do jogo.
      * 
      * @return uma pilha de pilhas contendo as filheiras
      */
@@ -214,7 +228,11 @@ public class TabuleiroBigBertha {
         return tableau;
     }
 
-    
+    /**
+     * Retorna estoque do jogo.
+     * 
+     * @return estoque
+     */
     public Stack<Stack<Carta>> getEstoque() {
         Iterator<Estrutura> it = this.elementosPartida.iterator();
         Stack<Stack<Carta>> estoque = new Stack<Stack<Carta>>();
@@ -227,6 +245,11 @@ public class TabuleiroBigBertha {
         } return null;
     }
 
+    /**
+     * Retorna fundações do jogo.
+     * 
+     * @return fundações
+     */
     public Stack<Stack<Carta>> getFundacoes() {
         Iterator<Estrutura> it = this.elementosPartida.iterator();
         Stack<Stack<Carta>> fundacoes = new Stack<Stack<Carta>>();
@@ -239,6 +262,11 @@ public class TabuleiroBigBertha {
         return fundacoes;
     }
 
+    /**
+     * Retorna cartas contidas na fundação K.
+     * 
+     * @return fundação K
+     */
     public Stack<Stack<Carta>> getFundacaoEspecial() {
         Iterator<Estrutura> it = this.elementosPartida.iterator();
         Stack<Stack<Carta>> fundacaoEspecial = new Stack<Stack<Carta>>();
