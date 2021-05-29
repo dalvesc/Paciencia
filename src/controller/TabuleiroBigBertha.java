@@ -1,23 +1,22 @@
 package controller;
 
-
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Stack;
 import java.util.Vector;
+import models.enums.Valor;
 import javax.management.InvalidAttributeValueException;
 import models.abstracts.Carta;
 import models.abstracts.Estrutura;
 import models.partidas.PartidaBigBertha;
 import models.estruturas.*;
 
-
 /**
  * Regras big bertha.
  * 
  * @author Adlla Katarine e Daniel Alves
  */
-public class TabuleiroBigBertha {
+public class TabuleiroBigBertha extends Tabuleiro{
     private static TabuleiroBigBertha tabuleiroBB = null;
     private Vector<Estrutura> elementosPartida;
     private static final int qtdCartasEstoque = 1;
@@ -57,7 +56,7 @@ public class TabuleiroBigBertha {
      * Método que move a(s) carta(s) de uma estrutura para outra de acordo com as
      * regras do Big Bertha.
      * 
-     * @param de estrutura de origem.
+     * @param de   estrutura de origem.
      * @param para estrutura de destino.
      */
     public Boolean moverCarta(int de, int para) {
@@ -71,63 +70,64 @@ public class TabuleiroBigBertha {
             } else if (destino instanceof Tableau) {
                 if (((Tableau) destino).aceitaCarta(origem.verCartaTopo())) {
                     this.elementosPartida.get(para).empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar());
-                }else{
+                } else {
                     return false;
                 }
             } else if (destino instanceof Fundacao) {
                 if (((Fundacao) destino).aceitaCarta(origem.verCartaTopo())) {
-                    this.elementosPartida.get(para).empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar());//erro aqui na hora do estoque
-                }else{
+                    this.elementosPartida.get(para).empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar());// erro
+                } else {
                     return false;
                 }
             } else if (destino instanceof FundacaoEspecial) {
                 if (((FundacaoEspecial) destino).aceitaCarta(origem.verCartaTopo())) {
-                    if(origem instanceof Tableau){
-                    this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());
-                    }else{
-                        this.elementosPartida.get(para).empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar());
+                    if (origem instanceof Tableau) {
+                        this.elementosPartida.get(para)
+                                .empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());
+                    } else {
+                        this.elementosPartida.get(para)
+                                .empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar());
                     }
-                }else{
+                } else {
                     return false;
                 }
             }
         } else if (origem instanceof Tableau) {
             if (destino instanceof Tableau) {
-                int quantidadeRejeitada = 0;
                 int quantidadeDesempilhar = 0;
                 int qualCarta = 0;
 
                 Vector<Carta> aMover = origem.getCartas();
                 for (int i = 0; i < aMover.size(); i++) {
                     Carta percorrida = aMover.get(i);
-                    if(i < aMover.size()-1){
+                    if (i < aMover.size() - 1) {
 
-                        if(compararCorEValor(percorrida, aMover.get(i+1))){
+                        if (compararCorEValor(percorrida, aMover.get(i + 1))) {
                             qualCarta++;
-                        } else{
+                        } else {
                             qualCarta = 0;
                         }
                     }
                 }
-                
-                quantidadeDesempilhar = aMover.size() - ((aMover.size()-1) - qualCarta);
-                if (((Tableau) destino).aceitaCarta_OutraRegra(aMover.get((aMover.size()-1) - qualCarta))) {
+
+                quantidadeDesempilhar = aMover.size() - ((aMover.size() - 1) - qualCarta);
+                if (((Tableau) destino).aceitaCarta_OutraRegra(aMover.get((aMover.size() - 1) - qualCarta))) {
                     Stack<Carta> desempilhado = this.elementosPartida.get(de).desempilhar(quantidadeDesempilhar);
                     Collections.reverse(desempilhado);
                     this.elementosPartida.get(para).empilhar(desempilhado);
-                } else{
+                } else {
                     return false;
                 }
             } else if (destino instanceof Fundacao) {
                 if (((Fundacao) destino).aceitaCarta(origem.verCartaTopo())) {
                     this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());
-                }else{
+                } else {
                     return false;
                 }
             } else if (destino instanceof FundacaoEspecial) {
                 if (((FundacaoEspecial) destino).aceitaCarta(origem.verCartaTopo())) {
                     this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());
-                }else{
+                } else {
                     return false;
                 }
             }
@@ -136,19 +136,21 @@ public class TabuleiroBigBertha {
     }
 
     /**
-     * Compara cor e valor das cartas para verificar se é possível o empilhamento nas fileiras.
+     * Compara cor e valor das cartas para verificar se é possível o empilhamento
+     * nas fileiras.
      * 
      * @param cartaAtual
-     * @param cartaAnterior
+     * @param cartaPosterior
      * @return true caso seja possível.
      */
-    private boolean compararCorEValor(Carta cartaAtual, Carta cartaAnterior){
-        boolean temValorMenor = cartaAtual.getValor().peso == cartaAnterior.getValor().peso + 1;
-    
+    private boolean compararCorEValor(Carta cartaAtual, Carta cartaPosterior) {
+        boolean temValorMenor = cartaAtual.getValor().peso == cartaPosterior.getValor().peso + 1;
+
         boolean cartaAtualIsVermelha = cartaAtual.getNomeNaipe().equals("♥") || cartaAtual.getNomeNaipe().equals("♦");
-        boolean cartaAnteriorIsVermelha = cartaAnterior.getNomeNaipe().equals("♥") || cartaAnterior.getNomeNaipe().equals("♦");
-        //comparação cores
-        return temValorMenor && Boolean.logicalXor(cartaAnteriorIsVermelha, cartaAtualIsVermelha);
+        boolean cartaPosteriorIsVermelha = cartaPosterior.getNomeNaipe().equals("♥")
+                || cartaPosterior.getNomeNaipe().equals("♦");
+        // comparação cores
+        return temValorMenor && Boolean.logicalXor(cartaPosteriorIsVermelha, cartaAtualIsVermelha);
     }
 
     /**
@@ -176,19 +178,23 @@ public class TabuleiroBigBertha {
      */
     public boolean checarVitoria() {
         Iterator<Estrutura> it = this.elementosPartida.iterator();
+        int fundacoesCompletas = 0;
+        int fundacaoEspecialCompleta = 0;
         while (it.hasNext()) {
             Estrutura estrutura = it.next();
             if (estrutura instanceof Fundacao) {
-                if (estrutura.getCartas().size() < 12) {
-                    return false;
+                Stack<Carta> cartas = ((Fundacao) estrutura).getCartas();
+                if (cartas.firstElement().getValor() == Valor.AS && cartas.lastElement().getValor() == Valor.RAINHA) {
+                    fundacoesCompletas += 1;
                 }
             } else if (estrutura instanceof FundacaoEspecial) {
-                if (estrutura.getCartas().size() < 8) {
-                    return false;
+                Stack<Carta> cartas = ((FundacaoEspecial) estrutura).getCartas();
+                if (cartas.size() == 8) {
+                    fundacaoEspecialCompleta = 1;
                 }
             }
         }
-        return true;
+        return fundacoesCompletas == 8 && fundacaoEspecialCompleta == 1;
     }
 
     /**
@@ -222,7 +228,8 @@ public class TabuleiroBigBertha {
                 estoque.push(estrutura.getCartas());
                 return estoque;
             }
-        } return null;
+        }
+        return null;
     }
 
     /**

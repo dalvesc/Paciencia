@@ -1,6 +1,6 @@
 package views;
 import java.util.Scanner;
-import controller.Tabuleiro;
+import controller.TabuleiroPaciencia;
 
 
 public class MenuPaciencia{
@@ -20,11 +20,11 @@ public class MenuPaciencia{
                     System.out.print("ORIGEM, DESTINO: ");
                     String[] positions = sc.nextLine().split(",");
                     try {
-                        Tabuleiro.getInstance().moverCarta(
+                        TabuleiroPaciencia.getInstance().moverCarta(
                             Integer.parseInt(positions[0].trim()),
                             Integer.parseInt(positions[1].trim())
                         );
-                        if (Tabuleiro.getInstance().checarVitoria()) {
+                        if (TabuleiroPaciencia.getInstance().checarVitoria()) {
                             System.out.println("Parabéns!! Você venceu!");
                         }
                     } catch (Exception e) {
@@ -36,7 +36,7 @@ public class MenuPaciencia{
                     System.out.println("Digite a fileira que deseja revelar.");
                     String fileira = sc.nextLine();
                     try {
-                        Tabuleiro.getInstance().revelarTopo(Integer.parseInt(fileira));
+                        TabuleiroPaciencia.getInstance().revelarTopo(Integer.parseInt(fileira));
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                         System.out.println("Entrada inválida!");
@@ -45,10 +45,10 @@ public class MenuPaciencia{
                 case "3":
                     break;
                 case "4":
-                    Tabuleiro.getInstance().mudarDificuldade();
+                TabuleiroPaciencia.getInstance().mudarDificuldade();
                     break;
                 case "5":
-                    Tabuleiro.resetInstance();
+                TabuleiroPaciencia.resetInstance();
                     break;
                 case "6":
                     System.out.println("Saindo...");
@@ -58,7 +58,7 @@ public class MenuPaciencia{
                     System.out.println("Opção inválida!");
                     break;
             }
-            Tabuleiro.getInstance().exibir();
+            TabuleiroPaciencia.getInstance().exibir();
         }
     }
 
