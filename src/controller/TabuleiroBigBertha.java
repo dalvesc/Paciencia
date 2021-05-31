@@ -1,5 +1,6 @@
 package controller;
 
+
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Stack;
@@ -10,6 +11,7 @@ import models.abstracts.Carta;
 import models.abstracts.Estrutura;
 import models.partidas.PartidaBigBertha;
 import models.estruturas.*;
+
 
 /**
  * Regras big bertha.
@@ -25,6 +27,7 @@ public class TabuleiroBigBertha extends Tabuleiro {
         this.elementosPartida = new PartidaBigBertha().create();
     }
 
+    
     /**
      * Retorna o tabuleiro do jogo.
      * 
