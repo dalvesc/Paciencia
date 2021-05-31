@@ -157,23 +157,6 @@ public class TabuleiroBigBertha extends Tabuleiro {
     }
 
     /**
-     * Método que revela a penúltima carta do estoque, ficando assim as três últimas
-     * cartas visíveis.
-     */
-    public void revelarPenultimaCarta() {
-        Iterator<Estrutura> it = this.elementosPartida.iterator();
-        boolean encontrou = false; // variável se torna true quando é encontrada a estrutura desejava e assim
-                                   // finaliza a estrutura de repetição.
-        while (it.hasNext() || encontrou) {
-            Estrutura estrutura = it.next();
-            if (estrutura instanceof Estoque) {
-                estrutura.getCartas().get(estrutura.getCartas().size() - 4).setVisibilidade(true);
-                encontrou = true;
-            }
-        }
-    }
-
-    /**
      * Método que verifica se o jogo foi ganho, conferindo se toda as pilhas de
      * fundações estão completas.
      * 
@@ -181,26 +164,19 @@ public class TabuleiroBigBertha extends Tabuleiro {
      */
     public boolean checarVitoria() {
         Iterator<Estrutura> it = this.elementosPartida.iterator();
-        int fundacoesCompletas = 0;
-        int fundacaoEspecialCompleta = 0;
         while (it.hasNext()) {
             Estrutura estrutura = it.next();
             if (estrutura instanceof Fundacao) {
-                if (!((Fundacao) estrutura).getCartas().isEmpty()) {
-                    Stack<Carta> cartas = ((Fundacao) estrutura).getCartas();
-                    if (cartas.firstElement().getValor() == Valor.AS
-                            && cartas.lastElement().getValor() == Valor.RAINHA) {
-                        fundacoesCompletas += 1;
-                    }
+                if (estrutura.getCartas().size() < 12) {
+                    return false;
                 }
             } else if (estrutura instanceof FundacaoEspecial) {
-                Stack<Carta> cartas = ((FundacaoEspecial) estrutura).getCartas();
-                if (cartas.size() == 8) {
-                    fundacaoEspecialCompleta = 1;
+                if (estrutura.getCartas().size() < 8) {
+                    return false;
                 }
             }
         }
-        return fundacoesCompletas == 8 && fundacaoEspecialCompleta == 1;
+        return true;
     }
 
     /**
