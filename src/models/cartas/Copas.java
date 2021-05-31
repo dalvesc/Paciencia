@@ -1,7 +1,9 @@
 package models.cartas;
 
+
 import javax.management.InvalidAttributeValueException;
 import models.abstracts.Carta;
+
 
 public class Copas extends Carta {
 

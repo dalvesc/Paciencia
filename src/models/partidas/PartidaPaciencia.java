@@ -1,12 +1,10 @@
 package models.partidas;
 
-import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Stack;
 import java.util.Vector;
-
 import javax.management.InvalidAttributeValueException;
-
 import interfaces.Partida;
 import models.abstracts.Carta;
 import models.abstracts.Estrutura;
@@ -18,6 +16,7 @@ import models.estruturas.Descarte;
 import models.estruturas.Estoque;
 import models.estruturas.Fundacao;
 import models.estruturas.Tableau;
+
 
 public class PartidaPaciencia implements Partida {
   private final int BARALHO_MAX_SIZE = 52;

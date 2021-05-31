@@ -11,6 +11,7 @@ public class App extends Application {
         launch(args);
     }
 
+    
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/menu.fxml"));
         Parent root = fxmlLoader.load();

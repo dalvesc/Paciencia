@@ -1,16 +1,18 @@
 package models.estruturas;
 
+
 import java.util.Iterator;
 import java.util.Stack;
 import java.util.Vector;
-
 import models.abstracts.Carta;
 import models.abstracts.Estrutura;
+
 
 public class Estoque extends Estrutura {
   public Estoque (Vector<Carta> cartas) {
     super(cartas);
   }
+
 
   public void empilhar(Vector<Carta> cartas) {
     this.cartas.addAll(cartas);

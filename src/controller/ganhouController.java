@@ -1,7 +1,7 @@
 package controller;
 
-import java.io.IOException;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+
+/**
+ * Controller para a tela de ganhar o jogo.
+ * 
+ * @author Adlla Katarine e Daniel Alves
+ */
 public class ganhouController {
 
     @FXML
@@ -29,5 +35,4 @@ public class ganhouController {
         stage.setTitle("Menu");
         botaoRetornar.getScene().getWindow().hide();// ocultando tela antiga.
     }
-
 }

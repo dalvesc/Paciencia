@@ -1,7 +1,9 @@
 package models.cartas;
 
+
 import javax.management.InvalidAttributeValueException;
 import models.abstracts.Carta;
+
 
 public class Paus extends Carta {
   
@@ -13,5 +15,4 @@ public class Paus extends Carta {
   public String getNomeNaipe() {
     return "♣";
   }
-
 }

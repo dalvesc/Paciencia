@@ -1,7 +1,9 @@
 package models.abstracts;
 
+
 import java.util.Stack;
 import java.util.Vector;
+
 
 public abstract class Estrutura {
   protected Stack<Carta> cartas = new Stack<Carta>();

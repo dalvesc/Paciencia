@@ -1,17 +1,19 @@
 package models.estruturas;
 
+
 import java.util.Stack;
 import java.util.Vector;
-
 import interfaces.Empilhavel;
 import models.abstracts.Carta;
 import models.abstracts.Estrutura;
 import models.enums.Valor;
 
+
 public class Fundacao extends Estrutura implements Empilhavel {
   public Fundacao() {
     super(new Vector<Carta>());
   }
+
 
   @Override
   public void empilhar(Vector<Carta> cartas) {

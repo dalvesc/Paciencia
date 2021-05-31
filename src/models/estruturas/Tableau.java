@@ -1,8 +1,8 @@
 package models.estruturas;
 
+
 import java.util.Stack;
 import java.util.Vector;
-
 import interfaces.Empilhavel;
 import models.abstracts.Carta;
 import models.abstracts.Estrutura;
@@ -10,10 +10,12 @@ import models.cartas.Copas;
 import models.cartas.Ouros;
 import models.enums.Valor;
 
+
 public class Tableau extends Estrutura implements Empilhavel{
   public Tableau (Vector<Carta> cartas) {
     super(cartas);
   }
+
 
   @Override
   public void empilhar(Vector<Carta> cartas) {

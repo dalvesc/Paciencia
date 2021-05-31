@@ -20,11 +20,10 @@ import views.MenuPaciencia;
 public class menuController {
 
     @FXML
-    private Button paciencia;//botão para opção paciência.
+    private Button paciencia;// botão para opção paciência.
 
     @FXML
-    private Button bigbertha;//botão para opção big bertha.
-
+    private Button bigbertha;// botão para opção big bertha.
 
     /**
      * Ações para o botão Big Bertha.
@@ -34,7 +33,7 @@ public class menuController {
      */
     @FXML
     void escolhaBigBertha(ActionEvent event) throws IOException {
-        //abrindo nova tela para inicialização do jogo paciência.
+        // abrindo nova tela para inicialização do jogo paciência.
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/views/bigbertha.fxml"));
 
@@ -43,7 +42,7 @@ public class menuController {
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Big Bertha");
-        bigbertha.getScene().getWindow().hide();//ocultando tela antiga.
+        bigbertha.getScene().getWindow().hide();// ocultando tela antiga.
     }
 
     /**
@@ -54,7 +53,7 @@ public class menuController {
      */
     @FXML
     void escolhaPaciencia(ActionEvent event) throws Exception {
-        //abrindo nova tela para inicialização do jogo paciência.
+        // abrindo nova tela para inicialização do jogo paciência.
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/views/escolhaPaciencia.fxml"));
 
@@ -63,14 +62,14 @@ public class menuController {
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Paciência");
-        paciencia.getScene().getWindow().hide();//ocultando tela antiga.
+        paciencia.getScene().getWindow().hide();// ocultando tela antiga.
 
-        //nova thread para iniciar o paciência.
-        new Thread(){
+        // nova thread para iniciar o paciência.
+        new Thread() {
             @Override
             public void run() {
                 try {
-                    MenuPaciencia.iniciaPaciencia();//iniciando jogo paciência.
+                    MenuPaciencia.iniciaPaciencia();// iniciando jogo paciência.
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

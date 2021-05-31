@@ -16,7 +16,7 @@ import models.estruturas.*;
  * 
  * @author Adlla Katarine e Daniel Alves
  */
-public class TabuleiroBigBertha extends Tabuleiro{
+public class TabuleiroBigBertha extends Tabuleiro {
     private static TabuleiroBigBertha tabuleiroBB = null;
     private Vector<Estrutura> elementosPartida;
     private static final int qtdCartasEstoque = 1;
@@ -154,8 +154,8 @@ public class TabuleiroBigBertha extends Tabuleiro{
     }
 
     /**
-     * Método que revela a penultima carta do estoque, ficando assim as três últimas
-     * cartas visiveis.
+     * Método que revela a penúltima carta do estoque, ficando assim as três últimas
+     * cartas visíveis.
      */
     public void revelarPenultimaCarta() {
         Iterator<Estrutura> it = this.elementosPartida.iterator();
@@ -183,9 +183,12 @@ public class TabuleiroBigBertha extends Tabuleiro{
         while (it.hasNext()) {
             Estrutura estrutura = it.next();
             if (estrutura instanceof Fundacao) {
-                Stack<Carta> cartas = ((Fundacao) estrutura).getCartas();
-                if (cartas.firstElement().getValor() == Valor.AS && cartas.lastElement().getValor() == Valor.RAINHA) {
-                    fundacoesCompletas += 1;
+                if (!((Fundacao) estrutura).getCartas().isEmpty()) {
+                    Stack<Carta> cartas = ((Fundacao) estrutura).getCartas();
+                    if (cartas.firstElement().getValor() == Valor.AS
+                            && cartas.lastElement().getValor() == Valor.RAINHA) {
+                        fundacoesCompletas += 1;
+                    }
                 }
             } else if (estrutura instanceof FundacaoEspecial) {
                 Stack<Carta> cartas = ((FundacaoEspecial) estrutura).getCartas();

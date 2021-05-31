@@ -1,16 +1,17 @@
 package models.estruturas;
 
+
 import java.util.Stack;
 import java.util.Vector;
-
 import models.abstracts.Carta;
 import models.abstracts.Estrutura;
 
+
 public class Descarte extends Estrutura{
-  
   public Descarte () {
     super(new Stack<Carta>());
   }
+
 
   @Override
   public void empilhar(Vector<Carta> cartas) {

@@ -1,11 +1,10 @@
 package models.partidas;
 
+
 import java.util.Collections;
 import java.util.Stack;
 import java.util.Vector;
-
 import javax.management.InvalidAttributeValueException;
-
 import interfaces.Partida;
 import models.abstracts.Carta;
 import models.abstracts.Estrutura;
@@ -18,6 +17,12 @@ import models.estruturas.Fundacao;
 import models.estruturas.FundacaoEspecial;
 import models.estruturas.Tableau;
 
+
+/**
+ * Criação da partida do BigBertha
+ * 
+ * @author Adlla Katarine e Daniel Alves
+ */
 public class PartidaBigBertha implements Partida {
   private final int BARALHO_MAX_SIZE = 52; // quantidade cartas em um baralho.
   private final int QNTD_BARALHO = 2; // quantidade de baralhos usados.
@@ -27,7 +32,6 @@ public class PartidaBigBertha implements Partida {
    * distribui as cartas entre os montes.
    * 
    * @return Vector<Estrutura> - retorna um Vector com todos os montes criados.
-   * 
    */
   @Override
   public Vector<Estrutura> create() throws InvalidAttributeValueException {
@@ -59,7 +63,6 @@ public class PartidaBigBertha implements Partida {
    * @return Stack<Carta> - retorna uma pilha com todas as cartas.
    * @throws InvalidAttributeValueException
    */
-
   private Stack<Carta> criarBaralho() throws InvalidAttributeValueException {
     Stack<Carta> baralho = new Stack<>();
     for (int j = 0; j < QNTD_BARALHO; j++) {

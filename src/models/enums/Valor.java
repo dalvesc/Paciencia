@@ -1,5 +1,6 @@
 package models.enums;
 
+
 public enum Valor {
   AS(0),
   DOIS(1),

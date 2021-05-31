@@ -1,12 +1,11 @@
 package controller;
 
+
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Stack;
 import java.util.Vector;
-
 import javax.management.InvalidAttributeValueException;
-
 import models.abstracts.Carta;
 import models.abstracts.Estrutura;
 import models.enums.Valor;
@@ -16,14 +15,16 @@ import models.estruturas.Tableau;
 import models.partidas.PartidaPaciencia;
 import models.estruturas.Fundacao;
 
+
 public class TabuleiroPaciencia {
   private static TabuleiroPaciencia tabuleiro = null;
   private Vector<Estrutura> elementosPartida;
   private int qtdCartasEstoque = 1;
 
-  private TabuleiroPaciencia () throws InvalidAttributeValueException {
+  private TabuleiroPaciencia() throws InvalidAttributeValueException {
     this.elementosPartida = new PartidaPaciencia().create();
   }
+
 
   public static TabuleiroPaciencia getInstance() {
     if (tabuleiro == null) {
@@ -50,13 +51,14 @@ public class TabuleiroPaciencia {
 
     if (origem instanceof Estoque) {
       if (destino instanceof Descarte) {
-        this.elementosPartida.get(para).empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar(qtdCartasEstoque));
-      } 
+        this.elementosPartida.get(para)
+            .empilhar(((Estoque) this.elementosPartida.get(de)).desempilhar(qtdCartasEstoque));
+      }
     } else if (origem instanceof Descarte) {
       if (destino instanceof Estoque) {
         this.elementosPartida.get(para).empilhar(((Descarte) this.elementosPartida.get(de)).esvaziar());
       } else if (destino instanceof Tableau) {
-        if (((Tableau) destino).aceitaCarta(origem.verCartaTopo())){
+        if (((Tableau) destino).aceitaCarta(origem.verCartaTopo())) {
           this.elementosPartida.get(para).empilhar(((Descarte) this.elementosPartida.get(de)).desempilhar());
         }
       }
@@ -78,13 +80,13 @@ public class TabuleiroPaciencia {
         Collections.reverse(desempilhado);
         this.elementosPartida.get(para).empilhar(desempilhado);
       } else if (destino instanceof Fundacao) {
-        if (((Fundacao) destino).aceitaCarta(origem.verCartaTopo())){
+        if (((Fundacao) destino).aceitaCarta(origem.verCartaTopo())) {
           this.elementosPartida.get(para).empilhar(((Tableau) this.elementosPartida.get(de)).desempilhar());
         }
       }
     } else if (origem instanceof Fundacao) {
       if (destino instanceof Tableau) {
-        if (((Tableau) destino).aceitaCarta(origem.verCartaTopo())){
+        if (((Tableau) destino).aceitaCarta(origem.verCartaTopo())) {
           this.elementosPartida.get(para).empilhar(((Fundacao) this.elementosPartida.get(de)).desempilhar());
         }
       }
@@ -105,7 +107,7 @@ public class TabuleiroPaciencia {
   public void exibir() {
     Iterator<Estrutura> it = this.elementosPartida.iterator();
     int position = 0;
-    while(it.hasNext()) {
+    while (it.hasNext()) {
       Estrutura estrutura = it.next();
       if (estrutura instanceof Descarte) {
         this.listarCartas("Descarte - " + position, estrutura.getCartas());
@@ -122,10 +124,10 @@ public class TabuleiroPaciencia {
 
   private void listarCartas(String title, Vector<Carta> cartas) {
     StringBuilder sb = new StringBuilder(title + " = ");
-    for(int i = 0; i < cartas.size(); i++) {
+    for (int i = 0; i < cartas.size(); i++) {
       Carta carta = cartas.get(i);
       if (carta.estaVisivel()) {
-        sb.append(carta.getValor() + " " +carta.getNomeNaipe());
+        sb.append(carta.getValor() + " " + carta.getNomeNaipe());
       } else {
         sb.append("[<>]");
       }

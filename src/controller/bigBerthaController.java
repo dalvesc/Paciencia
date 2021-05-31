@@ -105,6 +105,9 @@ public class bigBerthaController implements Initializable {
     private Label fundacaoK;
 
     @FXML
+    private Label labelTenteNovamente;// label de erro.
+
+    @FXML
     private MenuButton deMovimento;
 
     @FXML
@@ -116,18 +119,15 @@ public class bigBerthaController implements Initializable {
     @FXML
     private Button botaoRetornar;
 
-    @FXML
-    private Label labelTenteNovamente;//label de erro.
+    private int movimentoDE = 0;// salva de onde o usuário quer mover a carta.
+    private int movimentoPARA = 0;// salva para onde o usuário quer mover a carta.
 
-    private int movimentoDE = 0;//salva de onde o usuário quer mover a carta.
-    private int movimentoPARA = 0;//salva para onde o  usuário quer mover a carta.
+    Stack<Stack<Carta>> estoqueL = TabuleiroBigBertha.getInstance().getEstoque();// pegando estoque.
+    Stack<Stack<Carta>> fileiras = TabuleiroBigBertha.getInstance().getTableau();// pegando tableau.
+    Stack<Stack<Carta>> fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();// pegando fundações.
+    Stack<Stack<Carta>> fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();// pegando fundação K.
 
-    Stack<Stack<Carta>> estoqueL = TabuleiroBigBertha.getInstance().getEstoque();//pegando estoque.
-    Stack<Stack<Carta>> fileiras = TabuleiroBigBertha.getInstance().getTableau();//pegando tableau.
-    Stack<Stack<Carta>> fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();//pegando fundações.
-    Stack<Stack<Carta>> fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();//pegando fundação K.
-
-    Stack<Carta> estoqueAUX2 = estoqueL.peek();//salvando a stack de estoque
+    Stack<Carta> estoqueAUX2 = estoqueL.peek();// salvando a stack de estoque
     Stack<Carta> estoqueAUX = new Stack<Carta>();
 
     /**
@@ -140,7 +140,7 @@ public class bigBerthaController implements Initializable {
         corBackgroundLabel();
     }
 
-
+    
     /**
      * Cores para fundações.
      */
@@ -287,30 +287,31 @@ public class bigBerthaController implements Initializable {
     @FXML
     void botaoMover(ActionEvent event) throws IOException {
         boolean resp = TabuleiroBigBertha.getInstance().moverCarta(movimentoDE, movimentoPARA);
-        if (!TabuleiroBigBertha.getInstance().checarVitoria()) {//caso o jogador ganhe.
-            if (resp) {//caso o movimento seja possível.
-                labelTenteNovamente.setVisible(false);//colocando a label de erro para invisível .
+        if (!TabuleiroBigBertha.getInstance().checarVitoria()) {// caso o jogador ganhe.
+            if (resp) {// caso o movimento seja possível.
+                labelTenteNovamente.setVisible(false);// colocando a label de erro para invisível .
 
-                this.estoqueL = TabuleiroBigBertha.getInstance().getEstoque();//atualiza cartas do estoque.
-                this.fileiras = TabuleiroBigBertha.getInstance().getTableau();//atualiza cartas fileiras.
-                this.fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();//atualiza cartas fundações.
-                this.fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();//atualiza cartas fundação K.
+                this.estoqueL = TabuleiroBigBertha.getInstance().getEstoque();// atualiza cartas do estoque.
+                this.fileiras = TabuleiroBigBertha.getInstance().getTableau();// atualiza cartas fileiras.
+                this.fundacoes = TabuleiroBigBertha.getInstance().getFundacoes();// atualiza cartas fundações.
+                this.fundacaoEspecial = TabuleiroBigBertha.getInstance().getFundacaoEspecial();// atualiza cartas
+                                                                                               // fundação K.
 
-                setFileiras();//inserindo as informações nas fileiras.
-                if (movimentoDE == 24) {//caso tenha pegado carta do estoque.
+                setFileiras();// inserindo as informações nas fileiras.
+                if (movimentoDE == 24) {// caso tenha pegado carta do estoque.
                     atualizaEstoque();
                 }
 
-                if (movimentoPARA < 8) {//caso tenha movido carta para fundações.
+                if (movimentoPARA < 8) {// caso tenha movido carta para fundações.
                     setFundacoes();
-                } else if (movimentoPARA == 8) {//caso tenha movido carta para fundação K.
+                } else if (movimentoPARA == 8) {// caso tenha movido carta para fundação K.
                     setFundacaoEspecial();
                 }
             } else {
-                labelTenteNovamente.setVisible(true);//caso o movimento seja inválido.
+                labelTenteNovamente.setVisible(true);// caso o movimento seja inválido.
             }
         } else {
-            //jogador ganhou.
+            // jogador ganhou.
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/views/ganhou.fxml"));
 
@@ -341,9 +342,8 @@ public class bigBerthaController implements Initializable {
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Menu");
-        botaoRetornar.getScene().getWindow().hide();//ocultando tela antiga.
+        botaoRetornar.getScene().getWindow().hide();// ocultando tela antiga.
     }
-
 
     @FXML
     void estoqueID(ActionEvent event) {
